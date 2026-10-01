@@ -1,566 +1,303 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JON P.N. — Pitches & Proyectos</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts: Space Grotesk & Inter -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
-
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            orange: '#FF4D12',
-                            cream: '#EAE8E3',
-                            creamDark: '#DFDCD5',
-                            dark: '#0D0D0D',
-                            muted: '#555555'
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        mono: ['Space Grotesk', 'monospace']
-                    }
-                }
-            }
-        }
-    </script>
-
-    <style>
-        body {
-            background-color: #EAE8E3;
-            color: #0D0D0D;
-            font-family: 'Inter', sans-serif;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        .border-black-fine {
-            border-color: #0D0D0D;
-        }
-
-        .border-t-fine { border-top: 1px solid #0D0D0D; }
-        .border-b-fine { border-bottom: 1px solid #0D0D0D; }
-        .border-l-fine { border-left: 1px solid #0D0D0D; }
-        .border-r-fine { border-right: 1px solid #0D0D0D; }
-        .border-fine { border: 1px solid #0D0D0D; }
-
-        .number-circle {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            border: 1px solid #0D0D0D;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-
-        .hero-title {
-            font-weight: 900;
-            letter-spacing: -0.05em;
-            line-height: 0.85;
-        }
-
-        /* Direct link hover effect */
-        .project-row {
-            transition: background-color 0.2s ease, color 0.2s ease;
-        }
-
-        .project-row:hover {
-            background-color: #0D0D0D;
-            color: #EAE8E3;
-        }
-
-        .project-row:hover .number-circle {
-            border-color: #EAE8E3;
-            color: #EAE8E3;
-        }
-
-        .project-row:hover .accent-tag {
-            background-color: #FF4D12;
-            color: #0D0D0D;
-        }
-
-        .project-row:hover .link-icon {
-            transform: translate(2px, -2px);
-        }
-
-        .badge-orange {
-            background-color: #FF4D12;
-            color: #0D0D0D;
-        }
-
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #EAE8E3;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #0D0D0D;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>REPOS.LINX — Pitches & Proyectos</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #EAE8E3;
+      color: #0D0D0D;
+    }
+    .font-mono-custom {
+      font-family: 'Space Grotesk', monospace;
+    }
+    .bg-brand-orange {
+      background-color: #FF4D12;
+    }
+    .text-brand-orange {
+      color: #FF4D12;
+    }
+    .border-brand-black {
+      border-color: #0D0D0D;
+    }
+    .brutalist-card {
+      border: 1px solid #0D0D0D;
+      transition: all 0.15s ease-in-out;
+    }
+    .brutalist-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 4px 4px 0px #0D0D0D;
+    }
+    .badge-number {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 1px solid #0D0D0D;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 700;
+    }
+  </style>
 </head>
-<body class="min-h-screen flex flex-col justify-between selection:bg-brand-orange selection:text-brand-dark">
+<body class="min-h-screen pb-16">
 
-    <!-- TOP NAVIGATION BAR -->
-    <header class="border-b-fine bg-brand-cream sticky top-0 z-40">
-        <div class="max-w-4xl mx-auto px-4 py-3 flex justify-between items-center">
-            <div class="flex items-center gap-2">
-                <div class="w-7 h-7 bg-brand-dark text-brand-cream flex items-center justify-center font-bold font-mono text-xs tracking-tighter border border-brand-dark">
-                    JP
-                </div>
-                <span class="font-mono text-xs uppercase tracking-widest font-semibold">Repository v2.6</span>
-            </div>
-            
-            <div class="flex items-center gap-4 text-xs font-mono">
-                <span class="hidden sm:inline-block"><i class="fa-regular fa-clock mr-1"></i> OCT 2026</span>
-                <span class="inline-block px-2 py-0.5 border-fine text-[10px] font-bold uppercase bg-brand-orange text-brand-dark">Direct Access</span>
-            </div>
-        </div>
-    </header>
-
-    <!-- MAIN CONTENT CONTAINER -->
-    <main class="max-w-4xl mx-auto w-full flex-grow px-0 sm:px-4 py-0 sm:py-6">
-        
-        <!-- BRANDING HERO SPLASH (INSPIRADO EN LA IMAGEN) -->
-        <section class="bg-brand-orange text-brand-dark p-6 sm:p-10 border-b-fine sm:border-fine relative overflow-hidden mb-0 sm:mb-8">
-            <div class="flex justify-between items-start mb-12 sm:mb-20">
-                <span class="font-mono text-xs font-bold uppercase tracking-wider border border-brand-dark px-2 py-1 bg-brand-cream">
-                    PORTFOLIO & PITCHES
-                </span>
-                <div class="w-5 h-5 bg-brand-dark"></div>
-            </div>
-
-            <!-- MONUMENTAL TYPOGRAPHY -->
-            <div class="hero-title text-5xl sm:text-7xl md:text-8xl uppercase mb-6 select-none leading-none">
-                JON PISIL<br>
-                <span class="text-brand-cream stroke-black">PROJECTS</span>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 border-t-fine border-brand-dark pt-4 text-xs font-mono">
-                <div>
-                    <p class="font-bold uppercase tracking-tight">Estrategia & Desarrollo Web</p>
-                    <p class="text-brand-dark/80">Recopilación de propuestas activas, calendarios y sistemas interactivos para clientes.</p>
-                </div>
-                <div class="flex items-end justify-start md:justify-end">
-                    <span class="inline-flex items-center gap-2 font-bold">
-                        <span class="w-2 h-2 rounded-full bg-brand-dark animate-pulse"></span>
-                        9 PROYECTOS REGISTRADOS
-                    </span>
-                </div>
-            </div>
-        </section>
-
-        <!-- CONTROLS & SEARCH BAR -->
-        <section class="bg-brand-cream border-b-fine sm:border-fine p-4 sm:p-6 mb-0 sm:mb-8">
-            <div class="flex flex-col md:flex-row gap-4 items-stretch md:items-center justify-between">
-                
-                <!-- Search Input -->
-                <div class="relative flex-grow">
-                    <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-brand-muted text-sm"></i>
-                    <input type="text" id="searchInput" placeholder="Buscar por cliente, doctor, proyecto..." 
-                        class="w-full pl-9 pr-4 py-2.5 bg-white/70 border-fine text-sm focus:outline-none focus:bg-white focus:ring-1 focus:ring-brand-dark transition-all rounded-none placeholder:text-brand-muted font-sans">
-                </div>
-
-                <!-- Category Pills -->
-                <div class="flex flex-wrap gap-1.5 font-mono text-xs" id="categoryFilters">
-                    <button data-cat="all" class="filter-btn px-3 py-2 border-fine bg-brand-dark text-brand-cream font-bold transition-all">
-                        Todos (9)
-                    </button>
-                    <button data-cat="salud" class="filter-btn px-3 py-2 border-fine bg-white/50 text-brand-dark hover:bg-white transition-all">
-                        Salud & Médicos
-                    </button>
-                    <button data-cat="viajes" class="filter-btn px-3 py-2 border-fine bg-white/50 text-brand-dark hover:bg-white transition-all">
-                        Viajes & Hospedaje
-                    </button>
-                    <button data-cat="herramientas" class="filter-btn px-3 py-2 border-fine bg-white/50 text-brand-dark hover:bg-white transition-all">
-                        Herramientas
-                    </button>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECTION HEADER EDITORIAL -->
-        <div class="px-4 sm:px-0 py-3 border-b-fine flex justify-between items-center text-xs font-mono uppercase tracking-wider font-bold">
-            <span>(01) REPOSITORIO DE ENLACES</span>
-            <span id="resultsCount">Mostrando 9 resultados</span>
-        </div>
-
-        <!-- LIST OF PROJECTS (SWISS / BRUTALIST STYLE) -->
-        <div class="divide-y divide-black border-b-fine mb-12" id="projectsContainer">
-            <!-- Project items populated via JS or render template below -->
-        </div>
-
-    </main>
-
-    <!-- PREVIEW / MODAL DIALOG -->
-    <div id="previewModal" class="fixed inset-0 bg-brand-dark/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-3 sm:p-6">
-        <div class="bg-brand-cream border-2 border-brand-dark w-full max-w-2xl max-h-[90vh] flex flex-col shadow-2xl relative overflow-hidden">
-            
-            <!-- Modal Header -->
-            <div class="bg-brand-orange border-b-fine p-4 flex justify-between items-center text-brand-dark">
-                <div class="flex items-center gap-2">
-                    <span class="font-mono text-xs font-bold border border-brand-dark px-2 py-0.5 bg-brand-cream" id="modalNum">(00)</span>
-                    <h3 class="font-bold text-lg leading-tight uppercase font-mono" id="modalTitle">Título del Proyecto</h3>
-                </div>
-                <button onclick="closeModal()" class="w-8 h-8 border border-brand-dark bg-brand-cream hover:bg-brand-dark hover:text-brand-cream flex items-center justify-center text-lg font-bold transition-colors">
-                    &times;
-                </button>
-            </div>
-
-            <!-- Modal Content -->
-            <div class="p-6 overflow-y-auto space-y-6">
-                <div>
-                    <span class="text-xs font-mono uppercase text-brand-muted block mb-1">Descripción del Proyecto:</span>
-                    <p class="text-base text-brand-dark font-normal leading-relaxed" id="modalDesc"></p>
-                </div>
-
-                <div class="p-4 border-fine bg-white/60 space-y-2">
-                    <span class="text-xs font-mono uppercase font-bold text-brand-dark block">Enlace de acceso:</span>
-                    <div class="flex items-center gap-2">
-                        <input type="text" id="modalUrlInput" readonly class="w-full bg-brand-cream border-fine px-3 py-2 text-xs font-mono select-all">
-                        <button onclick="copyModalUrl()" id="copyBtn" class="px-4 py-2 border-fine bg-brand-dark text-brand-cream text-xs font-mono uppercase font-bold hover:bg-brand-orange hover:text-brand-dark transition-colors whitespace-nowrap">
-                            <i class="fa-regular fa-copy mr-1"></i> Copiar
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Sublinks container if available -->
-                <div id="sublinksSection" class="hidden space-y-3 pt-2">
-                    <span class="text-xs font-mono uppercase font-bold border-b border-brand-dark pb-1 block">Enlaces Auxiliares / Versiones anteriores:</span>
-                    <div id="sublinksList" class="space-y-2"></div>
-                </div>
-            </div>
-
-            <!-- Modal Footer -->
-            <div class="border-t-fine p-4 bg-brand-cream flex justify-between items-center font-mono text-xs">
-                <button onclick="closeModal()" class="px-4 py-2 border-fine bg-white hover:bg-gray-100 uppercase font-bold">
-                    Cerrar
-                </button>
-                <a id="modalDirectLink" href="#" target="_blank" rel="noopener noreferrer" class="px-5 py-2 border-fine bg-brand-orange text-brand-dark font-bold uppercase hover:bg-brand-dark hover:text-brand-cream transition-colors flex items-center gap-2">
-                    <span>Abrir Sitio Web</span>
-                    <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
-                </a>
-            </div>
-        </div>
+  <!-- TOP SPLASH HERO (ESTILO SUIZO BRUTALISTA) -->
+  <header class="bg-brand-orange text-black p-6 border-b-2 border-brand-black min-h-[220px] flex flex-col justify-between relative overflow-hidden">
+    <div class="flex justify-between items-center text-xs font-mono-custom uppercase tracking-wider font-bold">
+      <span>REPOS.LINX</span>
+      <span>[2026 EDITION]</span>
+    </div>
+    
+    <div class="mt-8 mb-2">
+      <h1 class="text-6xl sm:text-7xl font-extrabold tracking-tighter leading-none uppercase select-none">
+        PITCH<span class="block">INDEX</span>
+      </h1>
     </div>
 
-    <!-- FOOTER SECTION -->
-    <footer class="bg-brand-dark text-brand-cream border-t-fine border-brand-dark py-10 px-4 mt-12">
-        <div class="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 text-xs font-mono">
-            <div>
-                <div class="text-lg font-extrabold uppercase tracking-tighter mb-2 text-brand-orange font-sans">JON PISIL</div>
-                <p class="text-brand-cream/70 leading-relaxed">Repositorio privado de prototipos, calendarios editoriales y estrategias digitales para clientes.</p>
-            </div>
-            
-            <div>
-                <div class="font-bold uppercase mb-2 border-b border-brand-cream/20 pb-1">Navegación Rápida</div>
-                <ul class="space-y-1.5 text-brand-cream/80">
-                    <li><a href="#" onclick="filterCategory('all'); return false;" class="hover:text-brand-orange">&rarr; Todos los proyectos</a></li>
-                    <li><a href="#" onclick="filterCategory('salud'); return false;" class="hover:text-brand-orange">&rarr; Estrategias Médicas</a></li>
-                    <li><a href="#" onclick="filterCategory('viajes'); return false;" class="hover:text-brand-orange">&rarr; Proyectos de Viaje</a></li>
-                </ul>
-            </div>
+    <div class="flex justify-between items-end pt-4 border-t border-black/30 text-xs font-mono-custom">
+      <p class="max-w-[240px] leading-tight">Repositorio de propuestas, calendarios editoriales y demos técnicas.</p>
+      <div class="w-4 h-4 bg-black"></div>
+    </div>
+  </header>
 
-            <div>
-                <div class="font-bold uppercase mb-2 border-b border-brand-cream/20 pb-1">Contacto Directo</div>
-                <p class="text-brand-cream/70 mb-2">¿Necesitas ajustes en algún pitch o calendario?</p>
-                <span class="inline-block px-2 py-1 bg-brand-cream text-brand-dark font-bold text-[10px]">github.io/jonpisilmx</span>
-            </div>
+  <!-- BARRA DE NAVEGACIÓN Y FILTROS -->
+  <nav class="sticky top-0 bg-[#EAE8E3] border-b border-brand-black z-20 px-4 py-3">
+    <div class="max-w-md mx-auto flex flex-col gap-3">
+      <!-- Buscador -->
+      <div class="relative">
+        <input type="text" id="searchInput" placeholder="BUSCAR PROYECTO O CLIENTE..." 
+               class="w-full bg-white border border-brand-black px-3 py-2 text-xs font-mono-custom uppercase focus:outline-none focus:ring-2 focus:ring-black">
+      </div>
+      
+      <!-- Categorías -->
+      <div class="flex gap-2 overflow-x-auto pb-1 text-xs font-mono-custom no-scrollbar">
+        <button onclick="filterCategory('all')" class="cat-btn active bg-black text-white px-3 py-1 border border-brand-black whitespace-nowrap uppercase">TODOS</button>
+        <button onclick="filterCategory('salud')" class="cat-btn bg-white text-black px-3 py-1 border border-brand-black whitespace-nowrap uppercase">SALUD & MÉDICOS</button>
+        <button onclick="filterCategory('hospitalidad')" class="cat-btn bg-white text-black px-3 py-1 border border-brand-black whitespace-nowrap uppercase">HOSPITALIDAD & TURISMO</button>
+        <button onclick="filterCategory('herramientas')" class="cat-btn bg-white text-black px-3 py-1 border border-brand-black whitespace-nowrap uppercase">HERRAMIENTAS & VIAJES</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <main class="max-w-md mx-auto px-4 mt-6">
+
+    <!-- SECCIÓN: ENCABEZADO DE LISTA -->
+    <div class="flex justify-between items-baseline mb-4 border-b border-brand-black pb-2">
+      <h2 class="text-xl font-black uppercase tracking-tight">Pitches & Demos</h2>
+      <span id="projectCount" class="text-xs font-mono-custom font-bold text-gray-600">[ 10 PROYECTOS ]</span>
+    </div>
+
+    <!-- LISTA DE PROYECTOS -->
+    <div id="projectList" class="flex flex-col gap-4">
+
+      <!-- PROYECTO 01 -->
+      <article class="brutalist-card bg-white p-4 relative" data-category="salud" data-title="dr talavera instagram alterno">
+        <div class="flex justify-between items-start mb-2">
+          <span class="badge-number">01</span>
+          <span class="text-[10px] font-mono-custom font-bold uppercase tracking-widest bg-gray-200 px-2 py-0.5 border border-black">Salud</span>
         </div>
+        <h3 class="text-lg font-extrabold leading-tight uppercase mb-1">Dr. Talavera — Instagram Alterno</h3>
+        <p class="text-xs text-gray-700 mb-4 font-mono-custom">Propuesta de "Instagram" alterno para publicar fotos e información médica sin restricciones de censura.</p>
+        <a href="https://jonpisilmx.github.io/instagramdrtalavera" target="_blank" class="block w-full bg-brand-orange text-black font-bold text-center py-2 text-xs uppercase border border-black hover:bg-black hover:text-white transition-colors">
+          ABRIR PITCH ↗
+        </a>
+      </article>
 
-        <div class="max-w-4xl mx-auto mt-8 pt-6 border-t border-brand-cream/10 flex flex-col sm:flex-row justify-between items-center text-[10px] font-mono text-brand-cream/50 gap-2">
-            <span>DESIGNED WITH SWISS TYPOGRAPHY ELEGANCE</span>
-            <span>&copy; 2026 JON P.M. — ALL RIGHTS NOT RESERVED</span>
+      <!-- PROYECTO 02 -->
+      <article class="brutalist-card bg-white p-4 relative" data-category="salud" data-title="dr talavera plan editorial octubre">
+        <div class="flex justify-between items-start mb-2">
+          <span class="badge-number">02</span>
+          <span class="text-[10px] font-mono-custom font-bold uppercase tracking-widest bg-gray-200 px-2 py-0.5 border border-black">Salud</span>
         </div>
-    </footer>
+        <h3 class="text-lg font-extrabold leading-tight uppercase mb-1">Dr. Talavera — Plan Octubre</h3>
+        <p class="text-xs text-gray-700 mb-4 font-mono-custom">Plan editorial y estrategia de publicaciones calendarizada para el mes de octubre.</p>
+        <a href="https://jonpisilmx.github.io/drtalavera/" target="_blank" class="block w-full bg-brand-orange text-black font-bold text-center py-2 text-xs uppercase border border-black hover:bg-black hover:text-white transition-colors">
+          ABRIR PITCH ↗
+        </a>
+      </article>
 
-    <script>
-        // Data set of projects provided
-        const projects = [
-            {
-                id: '01',
-                title: 'Dr. Talavera — Instagram Alterno',
-                client: 'Dr. Talavera',
-                category: 'salud',
-                categoryLabel: 'Estrategia Médica',
-                url: 'https://jonpisilmx.github.io/instagramdrtalavera',
-                desc: 'Propuesta de "Instagram" alterno especialmente estructurada para que el Dr. Talavera pueda publicar fotografías y casos clínicos sin restricciones ni censura de la plataforma principal.',
-                sublinks: []
-            },
-            {
-                id: '02',
-                title: 'Dr. Talavera — Plan Editorial Octubre',
-                client: 'Dr. Talavera',
-                category: 'salud',
-                categoryLabel: 'Calendario Editorial',
-                url: 'https://jonpisilmx.github.io/drtalavera/',
-                desc: 'Plan editorial completo y calendarizado para el Dr. Talavera estructurado específicamente para el mes de octubre, con entregables e ideas de contenido.',
-                sublinks: []
-            },
-            {
-                id: '03',
-                title: 'Grupo Médico CAVELI — Dr. Marco Elizarrarás',
-                client: 'Dr. Marco Elizarrarás',
-                category: 'salud',
-                categoryLabel: 'Estrategia de Contenido',
-                url: 'https://jonpisilmx.github.io/propuestacaveli',
-                desc: 'Propuesta estratégica de contenidos y calendarización enfocada en los diferentes tipos y perfiles de habitantes y visitantes de Mazunte.',
-                sublinks: []
-            },
-            {
-                id: '04',
-                title: 'Dra. Yosadara — Planeación Editorial',
-                client: 'Dra. Yosadara Martinez',
-                category: 'salud',
-                categoryLabel: 'Estrategia & Calendario',
-                url: 'https://jonpisilmx.github.io/planeaciondrayosadara/',
-                desc: 'Propuesta de contenidos y calendario sugerido integral para la Dra. Yosadara (@dra.yosadaramartinez). Incluye el enfoque madurado tras el primer contacto.',
-                sublinks: [
-                    {
-                        label: 'Primer acercamiento / Propuesta inicial',
-                        url: 'https://jonpisilmx.github.io/propuesta.dra.yosadaramartinez/'
-                    }
-                ]
-            },
-            {
-                id: '05',
-                title: 'Dra. Gina Biopeau — Calendario de Trabajo',
-                client: 'Dra. Gina Biopeau',
-                category: 'salud',
-                categoryLabel: 'Administración & Agenda',
-                url: 'https://jonpisilmx.github.io/calendario-biopeau/',
-                desc: 'Sistema interactivo para la administración del calendario diario de trabajo, consulta e intervenciones de la Dra. Gina Biopeau.',
-                sublinks: []
-            },
-            {
-                id: '06',
-                title: 'Hotel Renata — Estrategia Mermejita',
-                client: 'Hotel Renata',
-                category: 'viajes',
-                categoryLabel: 'Estrategia Turística',
-                url: 'https://jonpisilmx.github.io/calendariorenata/',
-                desc: 'Estrategia integral de contenidos visuales y calendario editorial enfocado a promover las experiencias del Hotel Renata en Playa Mermejita.',
-                sublinks: []
-            },
-            {
-                id: '07',
-                title: 'Ushy Magical Travels — Sistema de Reservas',
-                client: 'Ushy Magical Travels',
-                category: 'viajes',
-                categoryLabel: 'Plataforma Web',
-                url: 'https://jonpisilmx.github.io/reserva/',
-                desc: 'Página web interactiva para la gestión directa de reservas de viajes y paquetes turísticos de Ushy Magical Travels.',
-                sublinks: []
-            },
-            {
-                id: '08',
-                title: 'Ushy Magical Travels — Cupones Interactivos',
-                client: 'Ushy Magical Travels',
-                category: 'viajes',
-                categoryLabel: 'Promociones & Cupones',
-                url: 'https://jonpisilmx.github.io/cupon-cenzontle/',
-                desc: 'Ejemplos de cupones interactivos y diseño promocional personalizado para los proyectos de viajes turísticos.',
-                sublinks: [
-                    {
-                        label: 'Ejemplo Cuponera Cenzontle',
-                        url: 'https://jonpisilmx.github.io/cupon-cenzontle/'
-                    },
-                    {
-                        label: 'Ejemplo Cuponera Leñita',
-                        url: 'https://jonpisilmx.github.io/cupon-lenita/'
-                    }
-                ]
-            },
-            {
-                id: '09',
-                title: 'Administrador de Gastos de Viaje',
-                client: 'Proyecto Personal / Vk',
-                category: 'herramientas',
-                categoryLabel: 'Herramienta de Control',
-                url: 'https://jonpisilmx.github.io/gastosdeviaje/',
-                desc: 'Administrador web interactivo para el registro, desglose y control de gastos para el viaje programado con Vk y su familia.',
-                sublinks: []
-            }
-        ];
+      <!-- PROYECTO 03 -->
+      <article class="brutalist-card bg-white p-4 relative" data-category="salud" data-title="dr marco elizarraras caveli contenidos mazunte">
+        <div class="flex justify-between items-start mb-2">
+          <span class="badge-number">03</span>
+          <span class="text-[10px] font-mono-custom font-bold uppercase tracking-widest bg-gray-200 px-2 py-0.5 border border-black">Salud</span>
+        </div>
+        <h3 class="text-lg font-extrabold leading-tight uppercase mb-1">Dr. Marco Elizarrarás — Propuesta CAVELI</h3>
+        <p class="text-xs text-gray-700 mb-4 font-mono-custom">Estrategia de contenidos y calendarización enfocada en los diferentes perfiles de habitantes de Mazunte.</p>
+        <a href="https://jonpisilmx.github.io/propuestacaveli" target="_blank" class="block w-full bg-brand-orange text-black font-bold text-center py-2 text-xs uppercase border border-black hover:bg-black hover:text-white transition-colors">
+          ABRIR PITCH ↗
+        </a>
+      </article>
 
-        let activeCategory = 'all';
-        let searchQuery = '';
+      <!-- PROYECTO 04 -->
+      <article class="brutalist-card bg-white p-4 relative" data-category="hospitalidad" data-title="hotel posada san jose analisis digital revenue">
+        <div class="flex justify-between items-start mb-2">
+          <span class="badge-number">04</span>
+          <span class="text-[10px] font-mono-custom font-bold uppercase tracking-widest bg-gray-200 px-2 py-0.5 border border-black">Hospitalidad</span>
+        </div>
+        <h3 class="text-lg font-extrabold leading-tight uppercase mb-1">Hotel Posada San José — Digital & Revenue</h3>
+        <p class="text-xs text-gray-700 mb-4 font-mono-custom">Análisis digital del negocio con plan de acciones estratégicas enfocadas a incrementar el revenue general.</p>
+        <a href="https://jonpisilmx.github.io/posada-san-jose/" target="_blank" class="block w-full bg-brand-orange text-black font-bold text-center py-2 text-xs uppercase border border-black hover:bg-black hover:text-white transition-colors">
+          ABRIR PITCH ↗
+        </a>
+      </article>
 
-        // Render projects
-        function renderProjects() {
-            const container = document.getElementById('projectsContainer');
-            
-            // Filter logic
-            const filtered = projects.filter(p => {
-                const matchesCat = (activeCategory === 'all') || (p.category === activeCategory);
-                const matchesSearch = p.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
-                                      p.desc.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                                      p.client.toLowerCase().includes(searchQuery.toLowerCase());
-                return matchesCat && matchesSearch;
-            });
+      <!-- PROYECTO 05 -->
+      <article class="brutalist-card bg-white p-4 relative" data-category="salud" data-title="dra yosadara martinez propuesta contenidos calendario">
+        <div class="flex justify-between items-start mb-2">
+          <span class="badge-number">05</span>
+          <span class="text-[10px] font-mono-custom font-bold uppercase tracking-widest bg-gray-200 px-2 py-0.5 border border-black">Salud</span>
+        </div>
+        <h3 class="text-lg font-extrabold leading-tight uppercase mb-1">Dra. Yosadara Martínez — Contenidos</h3>
+        <p class="text-xs text-gray-700 mb-2 font-mono-custom">Propuesta de contenidos y estructura de calendario sugerido.</p>
+        <div class="flex flex-col gap-2">
+          <a href="https://jonpisilmx.github.io/planeaciondrayosadara/" target="_blank" class="block w-full bg-brand-orange text-black font-bold text-center py-2 text-xs uppercase border border-black hover:bg-black hover:text-white transition-colors">
+            PLAN COMPLETO ↗
+          </a>
+          <a href="https://jonpisilmx.github.io/propuesta.dra.yosadaramartinez/" target="_blank" class="block w-full bg-gray-100 text-black font-bold text-center py-1.5 text-[10px] uppercase border border-black hover:bg-black hover:text-white transition-colors font-mono-custom">
+            VER PRIMER ACERCAMIENTO ↗
+          </a>
+        </div>
+      </article>
 
-            document.getElementById('resultsCount').innerText = `Mostrando ${filtered.length} de ${projects.length} resultados`;
+      <!-- PROYECTO 06 -->
+      <article class="brutalist-card bg-white p-4 relative" data-category="hospitalidad" data-title="hotel renata mermejita estrategia contenidos">
+        <div class="flex justify-between items-start mb-2">
+          <span class="badge-number">06</span>
+          <span class="text-[10px] font-mono-custom font-bold uppercase tracking-widest bg-gray-200 px-2 py-0.5 border border-black">Hospitalidad</span>
+        </div>
+        <h3 class="text-lg font-extrabold leading-tight uppercase mb-1">Hotel Renata Mermejita</h3>
+        <p class="text-xs text-gray-700 mb-4 font-mono-custom">Estrategia integral de contenidos de comunicación para el hotel boutique en Playa Mermejita.</p>
+        <a href="https://jonpisilmx.github.io/calendariorenata/" target="_blank" class="block w-full bg-brand-orange text-black font-bold text-center py-2 text-xs uppercase border border-black hover:bg-black hover:text-white transition-colors">
+          ABRIR PITCH ↗
+        </a>
+      </article>
 
-            if (filtered.length === 0) {
-                container.innerHTML = `
-                    <div class="p-12 text-center font-mono">
-                        <i class="fa-solid fa-folder-open text-3xl mb-3 text-brand-muted"></i>
-                        <p class="text-sm font-bold uppercase">No se encontraron resultados</p>
-                        <p class="text-xs text-brand-muted mt-1">Intenta con otros términos o limpia los filtros.</p>
-                    </div>
-                `;
-                return;
-            }
+      <!-- PROYECTO 07 -->
+      <article class="brutalist-card bg-white p-4 relative" data-category="salud" data-title="dra gina biopeau calendario trabajo diario">
+        <div class="flex justify-between items-start mb-2">
+          <span class="badge-number">07</span>
+          <span class="text-[10px] font-mono-custom font-bold uppercase tracking-widest bg-gray-200 px-2 py-0.5 border border-black">Salud</span>
+        </div>
+        <h3 class="text-lg font-extrabold leading-tight uppercase mb-1">Dra. Gina Biopeau — Gestión Diario</h3>
+        <p class="text-xs text-gray-700 mb-4 font-mono-custom">Propuesta de administración y optimización del calendario diario de atención médica.</p>
+        <a href="https://jonpisilmx.github.io/calendario-biopeau/" target="_blank" class="block w-full bg-brand-orange text-black font-bold text-center py-2 text-xs uppercase border border-black hover:bg-black hover:text-white transition-colors">
+          ABRIR PITCH ↗
+        </a>
+      </article>
 
-            container.innerHTML = filtered.map(p => `
-                <article class="project-row p-4 sm:p-6 cursor-pointer group" onclick="openModal('${p.id}')">
-                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                        
-                        <!-- Left: Number & Main info -->
-                        <div class="flex items-start gap-4">
-                            <span class="number-circle font-mono flex-shrink-0 mt-0.5">${p.id}</span>
-                            
-                            <div class="space-y-1">
-                                <div class="flex flex-wrap items-center gap-2">
-                                    <span class="accent-tag text-[10px] font-mono uppercase px-2 py-0.5 border border-current font-bold">
-                                        ${p.categoryLabel}
-                                    </span>
-                                    <span class="text-xs font-mono text-brand-muted group-hover:text-brand-cream/70">
-                                        Client: <strong class="text-brand-dark group-hover:text-brand-cream">${p.client}</strong>
-                                    </span>
-                                </div>
+      <!-- PROYECTO 08 -->
+      <article class="brutalist-card bg-white p-4 relative" data-category="herramientas" data-title="ushy magical travels cupones cenzontle lenita">
+        <div class="flex justify-between items-start mb-2">
+          <span class="badge-number">08</span>
+          <span class="text-[10px] font-mono-custom font-bold uppercase tracking-widest bg-gray-200 px-2 py-0.5 border border-black">Turismo & Cupones</span>
+        </div>
+        <h3 class="text-lg font-extrabold leading-tight uppercase mb-1">Ushy Travels — Sistema de Cupones</h3>
+        <p class="text-xs text-gray-700 mb-2 font-mono-custom">Demos interactivas de cupones de promoción digital para proyectos locales de viajes.</p>
+        <div class="grid grid-cols-2 gap-2">
+          <a href="https://jonpisilmx.github.io/cupon-cenzontle/" target="_blank" class="block w-full bg-brand-orange text-black font-bold text-center py-2 text-[10px] uppercase border border-black hover:bg-black hover:text-white transition-colors">
+            CUPÓN CENZONTLE ↗
+          </a>
+          <a href="https://jonpisilmx.github.io/cupon-lenita/" target="_blank" class="block w-full bg-brand-orange text-black font-bold text-center py-2 text-[10px] uppercase border border-black hover:bg-black hover:text-white transition-colors">
+            CUPÓN LEÑITA ↗
+          </a>
+        </div>
+      </article>
 
-                                <h2 class="text-xl sm:text-2xl font-black uppercase tracking-tight leading-tight group-hover:text-brand-cream">
-                                    ${p.title}
-                                </h2>
+      <!-- PROYECTO 09 -->
+      <article class="brutalist-card bg-white p-4 relative" data-category="hospitalidad" data-title="ushy magical travels pagina reservas landing">
+        <div class="flex justify-between items-start mb-2">
+          <span class="badge-number">09</span>
+          <span class="text-[10px] font-mono-custom font-bold uppercase tracking-widest bg-gray-200 px-2 py-0.5 border border-black">Hospitalidad</span>
+        </div>
+        <h3 class="text-lg font-extrabold leading-tight uppercase mb-1">Ushy Magical Travels — Reservas</h3>
+        <p class="text-xs text-gray-700 mb-4 font-mono-custom">Página interactiva de recepción de reservas y experiencias para la agencia de viajes.</p>
+        <a href="https://jonpisilmx.github.io/reserva/" target="_blank" class="block w-full bg-brand-orange text-black font-bold text-center py-2 text-xs uppercase border border-black hover:bg-black hover:text-white transition-colors">
+          ABRIR PITCH ↗
+        </a>
+      </article>
 
-                                <p class="text-xs sm:text-sm text-brand-dark/80 group-hover:text-brand-cream/80 line-clamp-2 max-w-2xl font-normal leading-relaxed pt-1">
-                                    ${p.desc}
-                                </p>
-                            </div>
-                        </div>
+      <!-- PROYECTO 10 -->
+      <article class="brutalist-card bg-white p-4 relative" data-category="herramientas" data-title="administrador gastos viaje octubre veka veka familia">
+        <div class="flex justify-between items-start mb-2">
+          <span class="badge-number">10</span>
+          <span class="text-[10px] font-mono-custom font-bold uppercase tracking-widest bg-gray-200 px-2 py-0.5 border border-black">Herramientas</span>
+        </div>
+        <h3 class="text-lg font-extrabold leading-tight uppercase mb-1">Administrador de Gastos — Octubre</h3>
+        <p class="text-xs text-gray-700 mb-4 font-mono-custom">Web app para control y gestión de gastos compartidos durante el viaje grupal con Veka.</p>
+        <a href="https://jonpisilmx.github.io/gastosdeviaje/" target="_blank" class="block w-full bg-brand-orange text-black font-bold text-center py-2 text-xs uppercase border border-black hover:bg-black hover:text-white transition-colors">
+          ABRIR WEB APP ↗
+        </a>
+      </article>
 
-                        <!-- Right: Action buttons -->
-                        <div class="flex items-center gap-2 sm:self-center self-end pt-2 md:pt-0">
-                            <a href="${p.url}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();" 
-                                class="inline-flex items-center gap-2 px-4 py-2 border-fine bg-brand-cream text-brand-dark font-mono text-xs font-bold uppercase hover:bg-brand-orange hover:text-brand-dark transition-all">
-                                <span>Visitar</span>
-                                <i class="fa-solid fa-arrow-up-right-from-square link-icon transition-transform"></i>
-                            </a>
-                        </div>
-                    </div>
-                </article>
-            `).join('');
+    </div>
+  </main>
+
+  <!-- FOOTER SUIZO BRUTALISTA -->
+  <footer class="max-w-md mx-auto px-4 mt-12 pt-6 border-t border-black text-xs font-mono-custom flex justify-between items-end text-gray-600">
+    <div>
+      <p class="font-bold text-black uppercase">REPOS.LINX</p>
+      <p>DESIGN & DEVELOPMENT AGENCY</p>
+    </div>
+    <div class="text-right">
+      <p>© 2026</p>
+    </div>
+  </footer>
+
+  <script>
+    // Filtro por categoría
+    function filterCategory(category) {
+      const cards = document.querySelectorAll('#projectList article');
+      const buttons = document.querySelectorAll('.cat-btn');
+
+      buttons.forEach(btn => {
+        btn.classList.remove('bg-black', 'text-white');
+        btn.classList.add('bg-white', 'text-black');
+      });
+
+      event.target.classList.remove('bg-white', 'text-black');
+      event.target.classList.add('bg-black', 'text-white');
+
+      let visibleCount = 0;
+      cards.forEach(card => {
+        if (category === 'all' || card.dataset.category === category) {
+          card.style.display = 'block';
+          visibleCount++;
+        } else {
+          card.style.display = 'none';
         }
+      });
 
-        // Modal Handlers
-        function openModal(id) {
-            const p = projects.find(item => item.id === id);
-            if (!p) return;
+      document.getElementById('projectCount').innerText = `[ ${visibleCount} PROYECTOS ]`;
+    }
 
-            document.getElementById('modalNum').innerText = `(${p.id})`;
-            document.getElementById('modalTitle').innerText = p.title;
-            document.getElementById('modalDesc').innerText = p.desc;
-            document.getElementById('modalUrlInput').value = p.url;
-            document.getElementById('modalDirectLink').href = p.url;
+    // Buscador en tiempo real
+    document.getElementById('searchInput').addEventListener('input', function(e) {
+      const query = e.target.value.toLowerCase().trim();
+      const cards = document.querySelectorAll('#projectList article');
+      let visibleCount = 0;
 
-            // Handle sublinks
-            const subSection = document.getElementById('sublinksSection');
-            const subList = document.getElementById('sublinksList');
-            
-            if (p.sublinks && p.sublinks.length > 0) {
-                subList.innerHTML = p.sublinks.map(sub => `
-                    <div class="flex items-center justify-between p-2.5 bg-white border-fine text-xs">
-                        <span class="font-bold text-brand-dark">${sub.label}</span>
-                        <a href="${sub.url}" target="_blank" class="px-3 py-1 bg-brand-dark text-brand-cream font-mono font-bold uppercase hover:bg-brand-orange hover:text-brand-dark transition-colors">
-                            Ver Enlace &rarr;
-                        </a>
-                    </div>
-                `).join('');
-                subSection.classList.remove('hidden');
-            } else {
-                subSection.classList.add('hidden');
-            }
-
-            const copyBtn = document.getElementById('copyBtn');
-            copyBtn.innerHTML = `<i class="fa-regular fa-copy mr-1"></i> Copiar`;
-
-            document.getElementById('previewModal').classList.remove('hidden');
-            document.body.style.overflow = 'hidden';
+      cards.forEach(card => {
+        const title = card.dataset.title;
+        if (title.includes(query)) {
+          card.style.display = 'block';
+          visibleCount++;
+        } else {
+          card.style.display = 'none';
         }
+      });
 
-        function closeModal() {
-            document.getElementById('previewModal').classList.add('hidden');
-            document.body.style.overflow = 'auto';
-        }
-
-        function copyModalUrl() {
-            const input = document.getElementById('modalUrlInput');
-            input.select();
-            document.execCommand('copy');
-            
-            const copyBtn = document.getElementById('copyBtn');
-            copyBtn.innerHTML = `<i class="fa-solid fa-check mr-1 text-green-400"></i> ¡Copiado!`;
-            setTimeout(() => {
-                copyBtn.innerHTML = `<i class="fa-regular fa-copy mr-1"></i> Copiar`;
-            }, 2000);
-        }
-
-        function filterCategory(cat) {
-            activeCategory = cat;
-            
-            // Update button styles
-            document.querySelectorAll('.filter-btn').forEach(btn => {
-                if (btn.getAttribute('data-cat') === cat) {
-                    btn.className = "filter-btn px-3 py-2 border-fine bg-brand-dark text-brand-cream font-bold transition-all";
-                } else {
-                    btn.className = "filter-btn px-3 py-2 border-fine bg-white/50 text-brand-dark hover:bg-white transition-all";
-                }
-            });
-
-            renderProjects();
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            // Render default list
-            renderProjects();
-
-            // Search listener
-            document.getElementById('searchInput').addEventListener('input', (e) => {
-                searchQuery = e.target.value;
-                renderProjects();
-            });
-
-            // Filter listeners
-            document.querySelectorAll('.filter-btn').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    filterCategory(btn.getAttribute('data-cat'));
-                });
-            });
-
-            // Close modal on escape key
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape') closeModal();
-            });
-
-            // Close modal on background click
-            document.getElementById('previewModal').addEventListener('click', (e) => {
-                if (e.target.id === 'previewModal') closeModal();
-            });
-        });
-    </script>
+      document.getElementById('projectCount').innerText = `[ ${visibleCount} PROYECTOS ]`;
+    });
+  </script>
 </body>
 </html>
