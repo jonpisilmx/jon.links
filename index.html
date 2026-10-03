@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>REPOS.LINX — Pitches & Proyectos</title>
+  <title>REPOS.LINX — Pitches & Ambient Hub</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -45,229 +45,565 @@
       font-size: 12px;
       font-weight: 700;
     }
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #EAE8E3;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #0D0D0D;
+    }
   </style>
 </head>
-<body class="min-h-screen pb-16">
+<body class="min-h-screen pb-24 lg:pb-8">
 
-  <!-- TOP SPLASH HERO (ESTILO SUIZO BRUTALISTA) -->
-  <header class="bg-brand-orange text-black p-6 border-b-2 border-brand-black min-h-[220px] flex flex-col justify-between relative overflow-hidden">
-    <div class="flex justify-between items-center text-xs font-mono-custom uppercase tracking-wider font-bold">
-      <span>REPOS.LINX</span>
-      <span>[2026 EDITION]</span>
-    </div>
-    
-    <div class="mt-8 mb-2">
-      <h1 class="text-6xl sm:text-7xl font-extrabold tracking-tighter leading-none uppercase select-none">
-        PITCH<span class="block">INDEX</span>
-      </h1>
-    </div>
+  <!-- CONTAINER MÁXIMO ADAPTATIVO -->
+  <div class="max-w-7xl mx-auto border-x-0 lg:border-x border-brand-black min-h-screen bg-[#EAE8E3] flex flex-col">
 
-    <div class="flex justify-between items-end pt-4 border-t border-black/30 text-xs font-mono-custom">
-      <p class="max-w-[240px] leading-tight">Repositorio de propuestas, calendarios editoriales y demos técnicas.</p>
-      <div class="w-4 h-4 bg-black"></div>
-    </div>
-  </header>
-
-  <!-- BARRA DE NAVEGACIÓN Y FILTROS -->
-  <nav class="sticky top-0 bg-[#EAE8E3] border-b border-brand-black z-20 px-4 py-3">
-    <div class="max-w-md mx-auto flex flex-col gap-3">
-      <!-- Buscador -->
-      <div class="relative">
-        <input type="text" id="searchInput" placeholder="BUSCAR PROYECTO O CLIENTE..." 
-               class="w-full bg-white border border-brand-black px-3 py-2 text-xs font-mono-custom uppercase focus:outline-none focus:ring-2 focus:ring-black">
+    <!-- HERO HEADER SUIZO -->
+    <header class="bg-brand-orange text-black p-6 border-b-2 border-brand-black min-h-[200px] lg:min-h-[220px] flex flex-col justify-between relative overflow-hidden">
+      <div class="flex justify-between items-center text-xs font-mono-custom uppercase tracking-wider font-bold">
+        <span>REPOS.LINX</span>
+        <span>[2026 WORKSTATION EDITION]</span>
       </div>
       
-      <!-- Categorías -->
-      <div class="flex gap-2 overflow-x-auto pb-1 text-xs font-mono-custom no-scrollbar">
-        <button onclick="filterCategory('all')" class="cat-btn active bg-black text-white px-3 py-1 border border-brand-black whitespace-nowrap uppercase">TODOS</button>
-        <button onclick="filterCategory('salud')" class="cat-btn bg-white text-black px-3 py-1 border border-brand-black whitespace-nowrap uppercase">SALUD & MÉDICOS</button>
-        <button onclick="filterCategory('hospitalidad')" class="cat-btn bg-white text-black px-3 py-1 border border-brand-black whitespace-nowrap uppercase">HOSPITALIDAD & TURISMO</button>
-        <button onclick="filterCategory('herramientas')" class="cat-btn bg-white text-black px-3 py-1 border border-brand-black whitespace-nowrap uppercase">HERRAMIENTAS & VIAJES</button>
+      <div class="my-4">
+        <h1 class="text-5xl sm:text-7xl lg:text-8xl font-extrabold tracking-tighter leading-none uppercase select-none">
+          PITCH<span class="inline-block lg:block lg:ml-0 ml-2">INDEX</span>
+        </h1>
+      </div>
+
+      <div class="flex justify-between items-end pt-3 border-t border-black/30 text-xs font-mono-custom">
+        <p class="max-w-md leading-tight">Repositorio central de propuestas, demostraciones y feed curado de tecnología con ambientación de audio.</p>
+        <div class="w-5 h-5 bg-black hidden sm:block"></div>
+      </div>
+    </header>
+
+    <!-- BARRA NAVEGACIÓN Y FILTROS -->
+    <nav class="sticky top-0 bg-[#EAE8E3] border-b border-brand-black z-30 px-4 py-3">
+      <div class="flex flex-col md:flex-row gap-3 items-center justify-between">
+        <div class="relative w-full md:w-96">
+          <input type="text" id="searchInput" placeholder="BUSCAR PROYECTO O CLIENTE..." 
+                 class="w-full bg-white border border-brand-black px-3 py-2 text-xs font-mono-custom uppercase focus:outline-none focus:ring-2 focus:ring-black">
+        </div>
+        
+        <div class="flex gap-2 overflow-x-auto w-full md:w-auto pb-1 md:pb-0 text-xs font-mono-custom">
+          <button onclick="filterCategory('all')" class="cat-btn active bg-black text-white px-3 py-1.5 border border-brand-black whitespace-nowrap uppercase">TODOS</button>
+          <button onclick="filterCategory('salud')" class="cat-btn bg-white text-black px-3 py-1.5 border border-brand-black whitespace-nowrap uppercase">SALUD & MÉDICOS</button>
+          <button onclick="filterCategory('hospitalidad')" class="cat-btn bg-white text-black px-3 py-1.5 border border-brand-black whitespace-nowrap uppercase">HOSPITALIDAD & TURISMO</button>
+          <button onclick="filterCategory('herramientas')" class="cat-btn bg-white text-black px-3 py-1.5 border border-brand-black whitespace-nowrap uppercase">HERRAMIENTAS & VIAJES</button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- GRID ADAPTATIVO PRINCIPAL -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 flex-1">
+
+      <!-- COLUMNA PROYECTOS (8 COLS) -->
+      <main class="lg:col-span-7 xl:col-span-8 px-4 py-6 border-r-0 lg:border-r border-brand-black">
+        
+        <div class="flex justify-between items-baseline mb-6 border-b border-brand-black pb-2">
+          <h2 class="text-2xl font-black uppercase tracking-tight">Pitches & Demos</h2>
+          <span id="projectCount" class="text-xs font-mono-custom font-bold text-gray-700">[ 11 PROYECTOS ]</span>
+        </div>
+
+        <div id="projectList" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+          <!-- 01 -->
+          <article class="brutalist-card bg-white p-4 flex flex-col justify-between" data-category="salud" data-title="dr talavera instagram alterno">
+            <div>
+              <div class="flex justify-between items-start mb-2">
+                <span class="badge-number">01</span>
+                <span class="text-[10px] font-mono-custom font-bold uppercase tracking-widest bg-gray-200 px-2 py-0.5 border border-black">Salud</span>
+              </div>
+              <h3 class="text-base font-extrabold leading-tight uppercase mb-1">Dr. Talavera — Instagram Alterno</h3>
+              <p class="text-xs text-gray-700 mb-4 font-mono-custom">Propuesta de "Instagram" alterno para publicar fotos e información médica sin restricciones de censura.</p>
+            </div>
+            <a href="https://jonpisilmx.github.io/instagramdrtalavera" target="_blank" class="block w-full bg-brand-orange text-black font-bold text-center py-2 text-xs uppercase border border-black hover:bg-black hover:text-white transition-colors">ABRIR PITCH ↗</a>
+          </article>
+
+          <!-- 02 -->
+          <article class="brutalist-card bg-white p-4 flex flex-col justify-between" data-category="salud" data-title="dr talavera plan editorial octubre">
+            <div>
+              <div class="flex justify-between items-start mb-2">
+                <span class="badge-number">02</span>
+                <span class="text-[10px] font-mono-custom font-bold uppercase tracking-widest bg-gray-200 px-2 py-0.5 border border-black">Salud</span>
+              </div>
+              <h3 class="text-base font-extrabold leading-tight uppercase mb-1">Dr. Talavera — Plan Octubre</h3>
+              <p class="text-xs text-gray-700 mb-4 font-mono-custom">Plan editorial y estrategia de publicaciones calendarizada para el mes de octubre.</p>
+            </div>
+            <a href="https://jonpisilmx.github.io/drtalavera/" target="_blank" class="block w-full bg-brand-orange text-black font-bold text-center py-2 text-xs uppercase border border-black hover:bg-black hover:text-white transition-colors">ABRIR PITCH ↗</a>
+          </article>
+
+          <!-- 03 -->
+          <article class="brutalist-card bg-white p-4 flex flex-col justify-between" data-category="salud" data-title="dr marco elizarraras caveli contenidos mazunte">
+            <div>
+              <div class="flex justify-between items-start mb-2">
+                <span class="badge-number">03</span>
+                <span class="text-[10px] font-mono-custom font-bold uppercase tracking-widest bg-gray-200 px-2 py-0.5 border border-black">Salud</span>
+              </div>
+              <h3 class="text-base font-extrabold leading-tight uppercase mb-1">Dr. Marco Elizarrarás — Propuesta CAVELI</h3>
+              <p class="text-xs text-gray-700 mb-4 font-mono-custom">Estrategia de contenidos y calendarización enfocada en los diferentes perfiles de habitantes de Mazunte.</p>
+            </div>
+            <a href="https://jonpisilmx.github.io/propuestacaveli" target="_blank" class="block w-full bg-brand-orange text-black font-bold text-center py-2 text-xs uppercase border border-black hover:bg-black hover:text-white transition-colors">ABRIR PITCH ↗</a>
+          </article>
+
+          <!-- 04 -->
+          <article class="brutalist-card bg-white p-4 flex flex-col justify-between" data-category="hospitalidad" data-title="hotel posada san jose analisis digital revenue">
+            <div>
+              <div class="flex justify-between items-start mb-2">
+                <span class="badge-number">04</span>
+                <span class="text-[10px] font-mono-custom font-bold uppercase tracking-widest bg-gray-200 px-2 py-0.5 border border-black">Hospitalidad</span>
+              </div>
+              <h3 class="text-base font-extrabold leading-tight uppercase mb-1">Hotel Posada San José — Revenue Strategy</h3>
+              <p class="text-xs text-gray-700 mb-4 font-mono-custom">Análisis digital del negocio con plan de acciones estratégicas enfocadas a incrementar el revenue general.</p>
+            </div>
+            <a href="https://jonpisilmx.github.io/posada-san-jose/" target="_blank" class="block w-full bg-brand-orange text-black font-bold text-center py-2 text-xs uppercase border border-black hover:bg-black hover:text-white transition-colors">ABRIR PITCH ↗</a>
+          </article>
+
+          <!-- 05 -->
+          <article class="brutalist-card bg-white p-4 flex flex-col justify-between" data-category="hospitalidad" data-title="fernanda rangel hub recursos control proyecto">
+            <div>
+              <div class="flex justify-between items-start mb-2">
+                <span class="badge-number">05</span>
+                <span class="text-[10px] font-mono-custom font-bold uppercase tracking-widest bg-gray-200 px-2 py-0.5 border border-black">Gestión</span>
+              </div>
+              <h3 class="text-base font-extrabold leading-tight uppercase mb-1">Fernanda Rangel — Hub de Recursos</h3>
+              <p class="text-xs text-gray-700 mb-4 font-mono-custom">Plataforma de control de proyecto y hub de recursos centralizado para Fernanda Rangel.</p>
+            </div>
+            <a href="https://jonpisilmx.github.io/ferrangel-controldeproyecto-y-recursos/" target="_blank" class="block w-full bg-brand-orange text-black font-bold text-center py-2 text-xs uppercase border border-black hover:bg-black hover:text-white transition-colors">ABRIR PITCH ↗</a>
+          </article>
+
+          <!-- 06 -->
+          <article class="brutalist-card bg-white p-4 flex flex-col justify-between" data-category="salud" data-title="dra yosadara martinez propuesta contenidos calendario">
+            <div>
+              <div class="flex justify-between items-start mb-2">
+                <span class="badge-number">06</span>
+                <span class="text-[10px] font-mono-custom font-bold uppercase tracking-widest bg-gray-200 px-2 py-0.5 border border-black">Salud</span>
+              </div>
+              <h3 class="text-base font-extrabold leading-tight uppercase mb-1">Dra. Yosadara Martínez — Contenidos</h3>
+              <p class="text-xs text-gray-700 mb-2 font-mono-custom">Propuesta de contenidos y estructura de calendario sugerido.</p>
+            </div>
+            <div class="flex flex-col gap-2 mt-2">
+              <a href="https://jonpisilmx.github.io/planeaciondrayosadara/" target="_blank" class="block w-full bg-brand-orange text-black font-bold text-center py-2 text-xs uppercase border border-black hover:bg-black hover:text-white transition-colors">PLAN COMPLETO ↗</a>
+              <a href="https://jonpisilmx.github.io/propuesta.dra.yosadaramartinez/" target="_blank" class="block w-full bg-gray-100 text-black font-bold text-center py-1.5 text-[10px] uppercase border border-black hover:bg-black hover:text-white transition-colors font-mono-custom">VER PRIMER ACERCAMIENTO ↗</a>
+            </div>
+          </article>
+
+          <!-- 07 -->
+          <article class="brutalist-card bg-white p-4 flex flex-col justify-between" data-category="hospitalidad" data-title="hotel renata mermejita estrategia contenidos">
+            <div>
+              <div class="flex justify-between items-start mb-2">
+                <span class="badge-number">07</span>
+                <span class="text-[10px] font-mono-custom font-bold uppercase tracking-widest bg-gray-200 px-2 py-0.5 border border-black">Hospitalidad</span>
+              </div>
+              <h3 class="text-base font-extrabold leading-tight uppercase mb-1">Hotel Renata Mermejita</h3>
+              <p class="text-xs text-gray-700 mb-4 font-mono-custom">Estrategia integral de contenidos de comunicación para el hotel boutique en Playa Mermejita.</p>
+            </div>
+            <a href="https://jonpisilmx.github.io/calendariorenata/" target="_blank" class="block w-full bg-brand-orange text-black font-bold text-center py-2 text-xs uppercase border border-black hover:bg-black hover:text-white transition-colors">ABRIR PITCH ↗</a>
+          </article>
+
+          <!-- 08 -->
+          <article class="brutalist-card bg-white p-4 flex flex-col justify-between" data-category="salud" data-title="dra gina biopeau calendario trabajo diario">
+            <div>
+              <div class="flex justify-between items-start mb-2">
+                <span class="badge-number">08</span>
+                <span class="text-[10px] font-mono-custom font-bold uppercase tracking-widest bg-gray-200 px-2 py-0.5 border border-black">Salud</span>
+              </div>
+              <h3 class="text-base font-extrabold leading-tight uppercase mb-1">Dra. Gina Biopeau — Gestión Diario</h3>
+              <p class="text-xs text-gray-700 mb-4 font-mono-custom">Propuesta de administración y optimización del calendario diario de atención médica.</p>
+            </div>
+            <a href="https://jonpisilmx.github.io/calendario-biopeau/" target="_blank" class="block w-full bg-brand-orange text-black font-bold text-center py-2 text-xs uppercase border border-black hover:bg-black hover:text-white transition-colors">ABRIR PITCH ↗</a>
+          </article>
+
+          <!-- 09 -->
+          <article class="brutalist-card bg-white p-4 flex flex-col justify-between" data-category="herramientas" data-title="ushy magical travels cupones cenzontle lenita">
+            <div>
+              <div class="flex justify-between items-start mb-2">
+                <span class="badge-number">09</span>
+                <span class="text-[10px] font-mono-custom font-bold uppercase tracking-widest bg-gray-200 px-2 py-0.5 border border-black">Turismo</span>
+              </div>
+              <h3 class="text-base font-extrabold leading-tight uppercase mb-1">Ushy Travels — Cupones</h3>
+              <p class="text-xs text-gray-700 mb-2 font-mono-custom">Demos interactivas de cupones de promoción digital para proyectos locales.</p>
+            </div>
+            <div class="grid grid-cols-2 gap-2 mt-2">
+              <a href="https://jonpisilmx.github.io/cupon-cenzontle/" target="_blank" class="block w-full bg-brand-orange text-black font-bold text-center py-2 text-[10px] uppercase border border-black hover:bg-black hover:text-white transition-colors">CENZONTLE ↗</a>
+              <a href="https://jonpisilmx.github.io/cupon-lenita/" target="_blank" class="block w-full bg-brand-orange text-black font-bold text-center py-2 text-[10px] uppercase border border-black hover:bg-black hover:text-white transition-colors">LEÑITA ↗</a>
+            </div>
+          </article>
+
+          <!-- 10 -->
+          <article class="brutalist-card bg-white p-4 flex flex-col justify-between" data-category="hospitalidad" data-title="ushy magical travels pagina reservas landing">
+            <div>
+              <div class="flex justify-between items-start mb-2">
+                <span class="badge-number">10</span>
+                <span class="text-[10px] font-mono-custom font-bold uppercase tracking-widest bg-gray-200 px-2 py-0.5 border border-black">Hospitalidad</span>
+              </div>
+              <h3 class="text-base font-extrabold leading-tight uppercase mb-1">Ushy Travels — Reservas</h3>
+              <p class="text-xs text-gray-700 mb-4 font-mono-custom">Página interactiva de recepción de reservas y experiencias para la agencia de viajes.</p>
+            </div>
+            <a href="https://jonpisilmx.github.io/reserva/" target="_blank" class="block w-full bg-brand-orange text-black font-bold text-center py-2 text-xs uppercase border border-black hover:bg-black hover:text-white transition-colors">ABRIR PITCH ↗</a>
+          </article>
+
+          <!-- 11 -->
+          <article class="brutalist-card bg-white p-4 flex flex-col justify-between" data-category="herramientas" data-title="administrador gastos viaje octubre veka veka familia">
+            <div>
+              <div class="flex justify-between items-start mb-2">
+                <span class="badge-number">11</span>
+                <span class="text-[10px] font-mono-custom font-bold uppercase tracking-widest bg-gray-200 px-2 py-0.5 border border-black">Herramientas</span>
+              </div>
+              <h3 class="text-base font-extrabold leading-tight uppercase mb-1">Gastos de Viaje — Octubre</h3>
+              <p class="text-xs text-gray-700 mb-4 font-mono-custom">Web app para control y gestión de gastos compartidos durante el viaje grupal con Veka.</p>
+            </div>
+            <a href="https://jonpisilmx.github.io/gastosdeviaje/" target="_blank" class="block w-full bg-brand-orange text-black font-bold text-center py-2 text-xs uppercase border border-black hover:bg-black hover:text-white transition-colors">ABRIR WEB APP ↗</a>
+          </article>
+
+        </div>
+      </main>
+
+      <!-- SIDEBAR EN ESCRITORIO: PLAYER MÚSICA + PAISAJES SONOROS + NEWS FEED -->
+      <aside class="lg:col-span-5 xl:col-span-4 bg-[#E2DFD8] p-4 flex flex-col gap-5">
+
+        <!-- MÓDULO 1: REPRODUCTOR CLÁSICO + SONIDOS DE AMBIENTE -->
+        <div class="bg-white border border-brand-black p-4 brutalist-card">
+          <div class="flex justify-between items-center border-b border-brand-black pb-2 mb-3">
+            <span class="text-xs font-mono-custom font-bold uppercase tracking-wider flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-green-500 inline-block animate-pulse"></span>
+              AUDIO & FOCUS WORKSPACE
+            </span>
+            <span class="text-[10px] font-mono-custom bg-black text-white px-1.5 py-0.5">PUBLIC AUDIO</span>
+          </div>
+
+          <!-- MÚSICA CLÁSICA -->
+          <div class="mb-3">
+            <span class="text-[9px] font-mono-custom font-bold uppercase text-brand-orange block mb-0.5">MÚSICA CLÁSICA</span>
+            <h4 id="trackTitle" class="text-sm font-extrabold uppercase leading-tight">Bach — Cello Suite No. 1</h4>
+            <p id="trackComposer" class="text-xs font-mono-custom text-gray-600">Johann Sebastian Bach</p>
+          </div>
+
+          <audio id="audioPlayer" preload="metadata"></audio>
+
+          <div class="flex items-center gap-2 mb-4">
+            <button onclick="prevTrack()" class="bg-[#EAE8E3] border border-black px-3 py-1.5 text-xs font-mono-custom font-bold hover:bg-black hover:text-white transition-colors">⏮</button>
+            <button id="playBtn" onclick="togglePlay()" class="flex-1 bg-brand-orange border border-black py-1.5 text-xs font-bold uppercase tracking-wider hover:bg-black hover:text-white transition-colors">PLAY ▶</button>
+            <button onclick="nextTrack()" class="bg-[#EAE8E3] border border-black px-3 py-1.5 text-xs font-mono-custom font-bold hover:bg-black hover:text-white transition-colors">⏭</button>
+          </div>
+
+          <!-- RUIDOS DE AMBIENTE / CONCENTRACIÓN -->
+          <div class="pt-3 border-t border-brand-black">
+            <span class="text-[9px] font-mono-custom font-bold uppercase text-black block mb-2">PAISAJES SONOROS / CONCENTRACIÓN</span>
+            
+            <audio id="ambientPlayer" loop></audio>
+
+            <div class="grid grid-cols-2 gap-1.5 text-[10px] font-mono-custom">
+              <button onclick="playAmbient('rain')" id="amb-rain" class="amb-btn bg-white text-black p-1.5 border border-black text-left flex items-center justify-between hover:bg-black hover:text-white">
+                <span>🌧️ Lluvia</span>
+                <span class="indicator text-[8px]">OFF</span>
+              </button>
+              <button onclick="playAmbient('forest')" id="amb-forest" class="amb-btn bg-white text-black p-1.5 border border-black text-left flex items-center justify-between hover:bg-black hover:text-white">
+                <span>🌲 Bosque</span>
+                <span class="indicator text-[8px]">OFF</span>
+              </button>
+              <button onclick="playAmbient('waves')" id="amb-waves" class="amb-btn bg-white text-black p-1.5 border border-black text-left flex items-center justify-between hover:bg-black hover:text-white">
+                <span>🌊 Olas Mar</span>
+                <span class="indicator text-[8px]">OFF</span>
+              </button>
+              <button onclick="playAmbient('cafe')" id="amb-cafe" class="amb-btn bg-white text-black p-1.5 border border-black text-left flex items-center justify-between hover:bg-black hover:text-white">
+                <span>☕ Cafe Ambient</span>
+                <span class="indicator text-[8px]">OFF</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- MÓDULO 2: FEED NOTICIAS TECH (CON MINIATURAS Y ENLACES REALES) -->
+        <div class="bg-white border border-brand-black p-4 brutalist-card flex-1 flex flex-col">
+          <div class="flex justify-between items-center border-b border-brand-black pb-2 mb-3">
+            <h3 class="text-xs font-mono-custom font-bold uppercase tracking-wider">TECH & AI FEED [6 DIVERSIFICADAS]</h3>
+            <button onclick="renderNews()" class="text-[10px] font-mono-custom underline hover:text-brand-orange">↻ REFRESCAR</button>
+          </div>
+
+          <div class="flex gap-1 mb-3 text-[10px] font-mono-custom">
+            <button onclick="filterNewsLang('all')" class="news-lang-btn bg-black text-white px-2 py-0.5 border border-black">TODAS</button>
+            <button onclick="filterNewsLang('es')" class="news-lang-btn bg-white text-black px-2 py-0.5 border border-black">ESPAÑOL</button>
+            <button onclick="filterNewsLang('en')" class="news-lang-btn bg-white text-black px-2 py-0.5 border border-black">ENGLISH</button>
+          </div>
+
+          <!-- NOTICIAS DINÁMICAS CON MINIATURA -->
+          <div id="newsFeedContainer" class="flex flex-col gap-3 overflow-y-auto max-h-[550px] pr-1">
+            <!-- Inyectado mediante JS con miniaturas -->
+          </div>
+        </div>
+
+      </aside>
+
+    </div>
+
+    <!-- FOOTER SUIZO -->
+    <footer class="p-6 border-t-2 border-brand-black bg-[#EAE8E3] text-xs font-mono-custom flex flex-col md:flex-row justify-between items-center gap-4 text-gray-700">
+      <div>
+        <p class="font-bold text-black uppercase">REPOS.LINX — DESIGN & DEVELOPMENT</p>
+        <p>REPOSITORIO DE PITCHES & HUB ADAPTATIVO</p>
+      </div>
+      <div class="text-right">
+        <p>© 2026 // ALL RIGHTS RESERVED</p>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- PLAYER MOBILE STICKY (BOTTOM BAR) -->
+  <div class="lg:hidden fixed bottom-0 left-0 right-0 bg-white border-t-2 border-brand-black p-3 z-40 flex items-center justify-between shadow-2xl">
+    <div class="flex items-center gap-2 overflow-hidden mr-2">
+      <span class="w-2.5 h-2.5 rounded-full bg-brand-orange shrink-0"></span>
+      <div class="truncate">
+        <p id="mobileTrackTitle" class="text-xs font-bold truncate">Bach — Cello Suite No. 1</p>
+        <p class="text-[10px] font-mono-custom text-gray-500 truncate">Música Clásica & Enfoque</p>
       </div>
     </div>
-  </nav>
-
-  <!-- CONTENIDO PRINCIPAL -->
-  <main class="max-w-md mx-auto px-4 mt-6">
-
-    <!-- SECCIÓN: ENCABEZADO DE LISTA -->
-    <div class="flex justify-between items-baseline mb-4 border-b border-brand-black pb-2">
-      <h2 class="text-xl font-black uppercase tracking-tight">Pitches & Demos</h2>
-      <span id="projectCount" class="text-xs font-mono-custom font-bold text-gray-600">[ 11 PROYECTOS ]</span>
+    <div class="flex items-center gap-1 shrink-0">
+      <button onclick="togglePlay()" id="mobilePlayBtn" class="bg-brand-orange text-black px-3 py-1 text-xs font-bold border border-black">PLAY ▶</button>
+      <button onclick="nextTrack()" class="bg-gray-200 text-black px-2 py-1 text-xs font-bold border border-black">⏭</button>
     </div>
-
-    <!-- LISTA DE PROYECTOS -->
-    <div id="projectList" class="flex flex-col gap-4">
-
-      <!-- PROYECTO 01 -->
-      <article class="brutalist-card bg-white p-4 relative" data-category="salud" data-title="dr talavera instagram alterno">
-        <div class="flex justify-between items-start mb-2">
-          <span class="badge-number">01</span>
-          <span class="text-[10px] font-mono-custom font-bold uppercase tracking-widest bg-gray-200 px-2 py-0.5 border border-black">Salud</span>
-        </div>
-        <h3 class="text-lg font-extrabold leading-tight uppercase mb-1">Dr. Talavera — Instagram Alterno</h3>
-        <p class="text-xs text-gray-700 mb-4 font-mono-custom">Propuesta de "Instagram" alterno para publicar fotos e información médica sin restricciones de censura.</p>
-        <a href="https://jonpisilmx.github.io/instagramdrtalavera" target="_blank" class="block w-full bg-brand-orange text-black font-bold text-center py-2 text-xs uppercase border border-black hover:bg-black hover:text-white transition-colors">
-          ABRIR PITCH ↗
-        </a>
-      </article>
-
-      <!-- PROYECTO 02 -->
-      <article class="brutalist-card bg-white p-4 relative" data-category="salud" data-title="dr talavera plan editorial octubre">
-        <div class="flex justify-between items-start mb-2">
-          <span class="badge-number">02</span>
-          <span class="text-[10px] font-mono-custom font-bold uppercase tracking-widest bg-gray-200 px-2 py-0.5 border border-black">Salud</span>
-        </div>
-        <h3 class="text-lg font-extrabold leading-tight uppercase mb-1">Dr. Talavera — Plan Octubre</h3>
-        <p class="text-xs text-gray-700 mb-4 font-mono-custom">Plan editorial y estrategia de publicaciones calendarizada para el mes de octubre.</p>
-        <a href="https://jonpisilmx.github.io/drtalavera/" target="_blank" class="block w-full bg-brand-orange text-black font-bold text-center py-2 text-xs uppercase border border-black hover:bg-black hover:text-white transition-colors">
-          ABRIR PITCH ↗
-        </a>
-      </article>
-
-      <!-- PROYECTO 03 -->
-      <article class="brutalist-card bg-white p-4 relative" data-category="salud" data-title="dr marco elizarraras caveli contenidos mazunte">
-        <div class="flex justify-between items-start mb-2">
-          <span class="badge-number">03</span>
-          <span class="text-[10px] font-mono-custom font-bold uppercase tracking-widest bg-gray-200 px-2 py-0.5 border border-black">Salud</span>
-        </div>
-        <h3 class="text-lg font-extrabold leading-tight uppercase mb-1">Dr. Marco Elizarrarás — Propuesta CAVELI</h3>
-        <p class="text-xs text-gray-700 mb-4 font-mono-custom">Estrategia de contenidos y calendarización enfocada en los diferentes perfiles de habitantes de Mazunte.</p>
-        <a href="https://jonpisilmx.github.io/propuestacaveli" target="_blank" class="block w-full bg-brand-orange text-black font-bold text-center py-2 text-xs uppercase border border-black hover:bg-black hover:text-white transition-colors">
-          ABRIR PITCH ↗
-        </a>
-      </article>
-
-      <!-- PROYECTO 04 -->
-      <article class="brutalist-card bg-white p-4 relative" data-category="hospitalidad" data-title="hotel posada san jose analisis digital revenue">
-        <div class="flex justify-between items-start mb-2">
-          <span class="badge-number">04</span>
-          <span class="text-[10px] font-mono-custom font-bold uppercase tracking-widest bg-gray-200 px-2 py-0.5 border border-black">Hospitalidad</span>
-        </div>
-        <h3 class="text-lg font-extrabold leading-tight uppercase mb-1">Hotel Posada San José — Digital & Revenue</h3>
-        <p class="text-xs text-gray-700 mb-4 font-mono-custom">Análisis digital del negocio con plan de acciones estratégicas enfocadas a incrementar el revenue general.</p>
-        <a href="https://jonpisilmx.github.io/posada-san-jose/" target="_blank" class="block w-full bg-brand-orange text-black font-bold text-center py-2 text-xs uppercase border border-black hover:bg-black hover:text-white transition-colors">
-          ABRIR PITCH ↗
-        </a>
-      </article>
-
-      <!-- PROYECTO 05 -->
-      <article class="brutalist-card bg-white p-4 relative" data-category="hospitalidad" data-title="fernanda rangel hub recursos control proyecto">
-        <div class="flex justify-between items-start mb-2">
-          <span class="badge-number">05</span>
-          <span class="text-[10px] font-mono-custom font-bold uppercase tracking-widest bg-gray-200 px-2 py-0.5 border border-black">Gestión</span>
-        </div>
-        <h3 class="text-lg font-extrabold leading-tight uppercase mb-1">Fernanda Rangel — Hub de Recursos</h3>
-        <p class="text-xs text-gray-700 mb-4 font-mono-custom">Plataforma de control de proyecto y hub de recursos centralizado para Fernanda Rangel.</p>
-        <a href="https://jonpisilmx.github.io/ferrangel-controldeproyecto-y-recursos/" target="_blank" class="block w-full bg-brand-orange text-black font-bold text-center py-2 text-xs uppercase border border-black hover:bg-black hover:text-white transition-colors">
-          ABRIR PITCH ↗
-        </a>
-      </article>
-
-      <!-- PROYECTO 06 -->
-      <article class="brutalist-card bg-white p-4 relative" data-category="salud" data-title="dra yosadara martinez propuesta contenidos calendario">
-        <div class="flex justify-between items-start mb-2">
-          <span class="badge-number">06</span>
-          <span class="text-[10px] font-mono-custom font-bold uppercase tracking-widest bg-gray-200 px-2 py-0.5 border border-black">Salud</span>
-        </div>
-        <h3 class="text-lg font-extrabold leading-tight uppercase mb-1">Dra. Yosadara Martínez — Contenidos</h3>
-        <p class="text-xs text-gray-700 mb-2 font-mono-custom">Propuesta de contenidos y estructura de calendario sugerido.</p>
-        <div class="flex flex-col gap-2">
-          <a href="https://jonpisilmx.github.io/planeaciondrayosadara/" target="_blank" class="block w-full bg-brand-orange text-black font-bold text-center py-2 text-xs uppercase border border-black hover:bg-black hover:text-white transition-colors">
-            PLAN COMPLETO ↗
-          </a>
-          <a href="https://jonpisilmx.github.io/propuesta.dra.yosadaramartinez/" target="_blank" class="block w-full bg-gray-100 text-black font-bold text-center py-1.5 text-[10px] uppercase border border-black hover:bg-black hover:text-white transition-colors font-mono-custom">
-            VER PRIMER ACERCAMIENTO ↗
-          </a>
-        </div>
-      </article>
-
-      <!-- PROYECTO 07 -->
-      <article class="brutalist-card bg-white p-4 relative" data-category="hospitalidad" data-title="hotel renata mermejita estrategia contenidos">
-        <div class="flex justify-between items-start mb-2">
-          <span class="badge-number">07</span>
-          <span class="text-[10px] font-mono-custom font-bold uppercase tracking-widest bg-gray-200 px-2 py-0.5 border border-black">Hospitalidad</span>
-        </div>
-        <h3 class="text-lg font-extrabold leading-tight uppercase mb-1">Hotel Renata Mermejita</h3>
-        <p class="text-xs text-gray-700 mb-4 font-mono-custom">Estrategia integral de contenidos de comunicación para el hotel boutique en Playa Mermejita.</p>
-        <a href="https://jonpisilmx.github.io/calendariorenata/" target="_blank" class="block w-full bg-brand-orange text-black font-bold text-center py-2 text-xs uppercase border border-black hover:bg-black hover:text-white transition-colors">
-          ABRIR PITCH ↗
-        </a>
-      </article>
-
-      <!-- PROYECTO 08 -->
-      <article class="brutalist-card bg-white p-4 relative" data-category="salud" data-title="dra gina biopeau calendario trabajo diario">
-        <div class="flex justify-between items-start mb-2">
-          <span class="badge-number">08</span>
-          <span class="text-[10px] font-mono-custom font-bold uppercase tracking-widest bg-gray-200 px-2 py-0.5 border border-black">Salud</span>
-        </div>
-        <h3 class="text-lg font-extrabold leading-tight uppercase mb-1">Dra. Gina Biopeau — Gestión Diario</h3>
-        <p class="text-xs text-gray-700 mb-4 font-mono-custom">Propuesta de administración y optimización del calendario diario de atención médica.</p>
-        <a href="https://jonpisilmx.github.io/calendario-biopeau/" target="_blank" class="block w-full bg-brand-orange text-black font-bold text-center py-2 text-xs uppercase border border-black hover:bg-black hover:text-white transition-colors">
-          ABRIR PITCH ↗
-        </a>
-      </article>
-
-      <!-- PROYECTO 09 -->
-      <article class="brutalist-card bg-white p-4 relative" data-category="herramientas" data-title="ushy magical travels cupones cenzontle lenita">
-        <div class="flex justify-between items-start mb-2">
-          <span class="badge-number">09</span>
-          <span class="text-[10px] font-mono-custom font-bold uppercase tracking-widest bg-gray-200 px-2 py-0.5 border border-black">Turismo & Cupones</span>
-        </div>
-        <h3 class="text-lg font-extrabold leading-tight uppercase mb-1">Ushy Travels — Sistema de Cupones</h3>
-        <p class="text-xs text-gray-700 mb-2 font-mono-custom">Demos interactivas de cupones de promoción digital para proyectos locales de viajes.</p>
-        <div class="grid grid-cols-2 gap-2">
-          <a href="https://jonpisilmx.github.io/cupon-cenzontle/" target="_blank" class="block w-full bg-brand-orange text-black font-bold text-center py-2 text-[10px] uppercase border border-black hover:bg-black hover:text-white transition-colors">
-            CUPÓN CENZONTLE ↗
-          </a>
-          <a href="https://jonpisilmx.github.io/cupon-lenita/" target="_blank" class="block w-full bg-brand-orange text-black font-bold text-center py-2 text-[10px] uppercase border border-black hover:bg-black hover:text-white transition-colors">
-            CUPÓN LEÑITA ↗
-          </a>
-        </div>
-      </article>
-
-      <!-- PROYECTO 10 -->
-      <article class="brutalist-card bg-white p-4 relative" data-category="hospitalidad" data-title="ushy magical travels pagina reservas landing">
-        <div class="flex justify-between items-start mb-2">
-          <span class="badge-number">10</span>
-          <span class="text-[10px] font-mono-custom font-bold uppercase tracking-widest bg-gray-200 px-2 py-0.5 border border-black">Hospitalidad</span>
-        </div>
-        <h3 class="text-lg font-extrabold leading-tight uppercase mb-1">Ushy Magical Travels — Reservas</h3>
-        <p class="text-xs text-gray-700 mb-4 font-mono-custom">Página interactiva de recepción de reservas y experiencias para la agencia de viajes.</p>
-        <a href="https://jonpisilmx.github.io/reserva/" target="_blank" class="block w-full bg-brand-orange text-black font-bold text-center py-2 text-xs uppercase border border-black hover:bg-black hover:text-white transition-colors">
-          ABRIR PITCH ↗
-        </a>
-      </article>
-
-      <!-- PROYECTO 11 -->
-      <article class="brutalist-card bg-white p-4 relative" data-category="herramientas" data-title="administrador gastos viaje octubre veka veka familia">
-        <div class="flex justify-between items-start mb-2">
-          <span class="badge-number">11</span>
-          <span class="text-[10px] font-mono-custom font-bold uppercase tracking-widest bg-gray-200 px-2 py-0.5 border border-black">Herramientas</span>
-        </div>
-        <h3 class="text-lg font-extrabold leading-tight uppercase mb-1">Administrador de Gastos — Octubre</h3>
-        <p class="text-xs text-gray-700 mb-4 font-mono-custom">Web app para control y gestión de gastos compartidos durante el viaje grupal con Veka.</p>
-        <a href="https://jonpisilmx.github.io/gastosdeviaje/" target="_blank" class="block w-full bg-brand-orange text-black font-bold text-center py-2 text-xs uppercase border border-black hover:bg-black hover:text-white transition-colors">
-          ABRIR WEB APP ↗
-        </a>
-      </article>
-
-    </div>
-  </main>
-
-  <!-- FOOTER SUIZO BRUTALISTA -->
-  <footer class="max-w-md mx-auto px-4 mt-12 pt-6 border-t border-black text-xs font-mono-custom flex justify-between items-end text-gray-600">
-    <div>
-      <p class="font-bold text-black uppercase">REPOS.LINX</p>
-      <p>DESIGN & DEVELOPMENT AGENCY</p>
-    </div>
-    <div class="text-right">
-      <p>© 2026</p>
-    </div>
-  </footer>
+  </div>
 
   <script>
-    // Filtro por categoría
+    // ----------------------------------------------------
+    // 1. REPRODUCTOR DE MÚSICA CLÁSICA Y AMBIENTAL
+    // ----------------------------------------------------
+    const playlist = [
+      {
+        title: "Cello Suite No. 1 - Prelude",
+        composer: "Johann Sebastian Bach",
+        url: "https://ia800100.us.archive.org/30/items/BachCelloSuiteNo.1InGMajorBwv1007/01_Prelude.mp3"
+      },
+      {
+        title: "Symphony No. 5 - Allegro",
+        composer: "Ludwig van Beethoven",
+        url: "https://ia800902.us.archive.org/17/items/Tv315BeethovenSymphonyNo.5InCMinorOp.67-1.AllegroConBrio/01_AllegroConBrio.mp3"
+      },
+      {
+        title: "Eine kleine Nachtmusik",
+        composer: "Wolfgang Amadeus Mozart",
+        url: "https://ia800203.us.archive.org/12/items/MozartEineKleineNachtmusikK.5251stMovementAllegro/01_Allegro.mp3"
+      },
+      {
+        title: "Nocturne Op. 9 No. 2",
+        composer: "Frédéric Chopin",
+        url: "https://ia800501.us.archive.org/28/items/ChopinNocturneInEFlatMajorOp.9No.2/ChopinNocturneOp9No2.mp3"
+      }
+    ];
+
+    const ambientSounds = {
+      rain: "https://ia800301.us.archive.org/28/items/RainSoundEffect_201603/RainSoundEffect.mp3",
+      forest: "https://ia800602.us.archive.org/18/items/ForestBirdsAtmosphere/ForestBirdsAtmosphere.mp3",
+      waves: "https://ia800708.us.archive.org/21/items/OceanWavesSoundEffect/OceanWavesSoundEffect.mp3",
+      cafe: "https://ia802800.us.archive.org/8/items/CoffeeShopAmbience/CoffeeShopAmbience.mp3"
+    };
+
+    let currentTrackIndex = 0;
+    let currentAmbient = null;
+    const audio = document.getElementById('audioPlayer');
+    const ambientAudio = document.getElementById('ambientPlayer');
+
+    function loadTrack(index) {
+      const track = playlist[index];
+      audio.src = track.url;
+      document.getElementById('trackTitle').innerText = track.title;
+      document.getElementById('mobileTrackTitle').innerText = track.title;
+      document.getElementById('trackComposer').innerText = track.composer;
+    }
+
+    function togglePlay() {
+      if (!audio.src) loadTrack(currentTrackIndex);
+
+      if (audio.paused) {
+        audio.play();
+        document.getElementById('playBtn').innerText = 'PAUSE ❚❚';
+        document.getElementById('mobilePlayBtn').innerText = 'PAUSE ❚❚';
+      } else {
+        audio.pause();
+        document.getElementById('playBtn').innerText = 'PLAY ▶';
+        document.getElementById('mobilePlayBtn').innerText = 'PLAY ▶';
+      }
+    }
+
+    function nextTrack() {
+      currentTrackIndex = (currentTrackIndex + 1) % playlist.length;
+      loadTrack(currentTrackIndex);
+      audio.play();
+      document.getElementById('playBtn').innerText = 'PAUSE ❚❚';
+      document.getElementById('mobilePlayBtn').innerText = 'PAUSE ❚❚';
+    }
+
+    function prevTrack() {
+      currentTrackIndex = (currentTrackIndex - 1 + playlist.length) % playlist.length;
+      loadTrack(currentTrackIndex);
+      audio.play();
+      document.getElementById('playBtn').innerText = 'PAUSE ❚❚';
+      document.getElementById('mobilePlayBtn').innerText = 'PAUSE ❚❚';
+    }
+
+    function playAmbient(type) {
+      const buttons = document.querySelectorAll('.amb-btn');
+      
+      if (currentAmbient === type) {
+        ambientAudio.pause();
+        currentAmbient = null;
+        buttons.forEach(btn => {
+          btn.classList.remove('bg-black', 'text-white');
+          btn.classList.add('bg-white', 'text-black');
+          btn.querySelector('.indicator').innerText = 'OFF';
+        });
+      } else {
+        currentAmbient = type;
+        ambientAudio.src = ambientSounds[type];
+        ambientAudio.play();
+        
+        buttons.forEach(btn => {
+          btn.classList.remove('bg-black', 'text-white');
+          btn.classList.add('bg-white', 'text-black');
+          btn.querySelector('.indicator').innerText = 'OFF';
+        });
+
+        const activeBtn = document.getElementById(`amb-${type}`);
+        activeBtn.classList.remove('bg-white', 'text-black');
+        activeBtn.classList.add('bg-black', 'text-white');
+        activeBtn.querySelector('.indicator').innerText = 'ON ●';
+      }
+    }
+
+    loadTrack(0);
+
+    // ----------------------------------------------------
+    // 2. CATÁLOGO DINÁMICO DE NOTICIAS CON MINIATURA & LINK
+    // ----------------------------------------------------
+    const newsCatalog = [
+      {
+        title: "Apple amplía la integración de IA generativa en la suite de edición móvil",
+        desc: "Optimizaciones directo al procesador M-Series para flujos de trabajo sin latencia.",
+        category: "HARDWARE",
+        lang: "es",
+        url: "https://www.xataka.com",
+        img: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=200&q=80"
+      },
+      {
+        title: "OpenAI introduces autonomous multimodal canvas for interface prototyping",
+        desc: "Agents can now render and adjust live code components straight from prompts.",
+        category: "AI AGENTS",
+        lang: "en",
+        url: "https://techcrunch.com",
+        img: "https://images.unsplash.com/photo-1677442136019-21780efad99a?auto=format&fit=crop&w=200&q=80"
+      },
+      {
+        title: "Diseño Neo-Brutalista: Por qué la simplicidad rígida domina el desarrollo web",
+        desc: "Menos capas de sombras pesadas y más estructura suiza con tipografías monumentales.",
+        category: "DESIGN",
+        lang: "es",
+        url: "https://www.wired.com",
+        img: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=200&q=80"
+      },
+      {
+        title: "The rise of local LLMs on portable devices and smart wearables",
+        desc: "Privacy-focused artificial intelligence running on offline ARM architectures.",
+        category: "GADGETS",
+        lang: "en",
+        url: "https://www.theverge.com",
+        img: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=200&q=80"
+      },
+      {
+        title: "Figma y herramientas de código asistido aceleran la entrega de pitches comerciales",
+        desc: "Prototipos completamente funcionales presentados en vivo durante la llamada inicial.",
+        category: "DEV TOOLS",
+        lang: "es",
+        url: "https://www.xataka.com",
+        img: "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?auto=format&fit=crop&w=200&q=80"
+      },
+      {
+        title: "Next-generation display technology brings ultra-contrast outdoor viewing",
+        desc: "New OLED panels designed specifically for high-brightness beach & outdoor work.",
+        category: "HARDWARE",
+        lang: "en",
+        url: "https://www.wired.com",
+        img: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=200&q=80"
+      },
+      {
+        title: "Nuevas regulaciones europeas para la transparencia de algoritmos generativos",
+        desc: "Las plataformas deberán indicar explícitamente el origen del material de entrenamiento.",
+        category: "AI POLICY",
+        lang: "es",
+        url: "https://www.technologyreview.es",
+        img: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=200&q=80"
+      },
+      {
+        title: "Spatial Audio in mobile workflows: Enhancing deep focus during coding sessions",
+        desc: "How sound design directly influences cognitive load and technical output.",
+        category: "AUDIO TECH",
+        lang: "en",
+        url: "https://www.theverge.com",
+        img: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=200&q=80"
+      }
+    ];
+
+    let currentNewsLang = 'all';
+
+    function getRandomNews(count, lang) {
+      let filtered = newsCatalog;
+      if (lang !== 'all') {
+        filtered = newsCatalog.filter(item => item.lang === lang);
+      }
+      const shuffled = [...filtered].sort(() => 0.5 - Math.random());
+      return shuffled.slice(0, Math.min(count, shuffled.length));
+    }
+
+    function renderNews() {
+      const container = document.getElementById('newsFeedContainer');
+      const newsItems = getRandomNews(6, currentNewsLang);
+      
+      container.innerHTML = '';
+      
+      newsItems.forEach(item => {
+        const article = document.createElement('a');
+        article.href = item.url;
+        article.target = "_blank";
+        article.className = "flex gap-3 border-b border-gray-300 pb-2.5 hover:bg-gray-100 p-1 transition-colors block group";
+
+        article.innerHTML = `
+          <img src="${item.img}" alt="Thumbnail" class="w-16 h-16 object-cover border border-black shrink-0 grayscale group-hover:grayscale-0 transition-all">
+          <div class="flex-1 min-w-0">
+            <div class="flex justify-between items-center mb-0.5">
+              <span class="text-[9px] font-mono-custom font-bold uppercase bg-brand-orange text-black px-1 border border-black">${item.category}</span>
+              <span class="text-[9px] font-mono-custom font-bold text-gray-500 uppercase">${item.lang.toUpperCase()}</span>
+            </div>
+            <h5 class="text-xs font-extrabold leading-tight text-black group-hover:underline truncate-2-lines">${item.title}</h5>
+            <p class="text-[10px] text-gray-600 font-mono-custom mt-0.5 line-clamp-1">${item.desc}</p>
+          </div>
+        `;
+        container.appendChild(article);
+      });
+    }
+
+    function filterNewsLang(lang) {
+      currentNewsLang = lang;
+      const buttons = document.querySelectorAll('.news-lang-btn');
+
+      buttons.forEach(btn => {
+        btn.classList.remove('bg-black', 'text-white');
+        btn.classList.add('bg-white', 'text-black');
+      });
+
+      event.target.classList.remove('bg-white', 'text-black');
+      event.target.classList.add('bg-black', 'text-white');
+
+      renderNews();
+    }
+
+    // Renderizar noticias iniciales al cargar
+    renderNews();
+
+    // Filtros de proyectos
     function filterCategory(category) {
       const cards = document.querySelectorAll('#projectList article');
       const buttons = document.querySelectorAll('.cat-btn');
@@ -283,7 +619,7 @@
       let visibleCount = 0;
       cards.forEach(card => {
         if (category === 'all' || card.dataset.category === category) {
-          card.style.display = 'block';
+          card.style.display = 'flex';
           visibleCount++;
         } else {
           card.style.display = 'none';
@@ -293,7 +629,6 @@
       document.getElementById('projectCount').innerText = `[ ${visibleCount} PROYECTOS ]`;
     }
 
-    // Buscador en tiempo real
     document.getElementById('searchInput').addEventListener('input', function(e) {
       const query = e.target.value.toLowerCase().trim();
       const cards = document.querySelectorAll('#projectList article');
@@ -302,7 +637,7 @@
       cards.forEach(card => {
         const title = card.dataset.title;
         if (title.includes(query)) {
-          card.style.display = 'block';
+          card.style.display = 'flex';
           visibleCount++;
         } else {
           card.style.display = 'none';
@@ -314,3 +649,307 @@
   </script>
 </body>
 </html>
+```# **REPOSITORIO DE PITCHES**
+## **ARCHIVO TÉCNICO DE CÓDIGO FUENTE — ESTILO BRUTALISTA / SUIZO**
+A continuación se presenta la estructura de código HTML/CSS completa para el repositorio de pitches comercial. Incluye el nuevo proyecto **Hotel Posada San José** clasificado bajo la categoría de **Hospitalidad & Turismo**.\<\!DOCTYPE html\>
+\<html lang="es"\>
+\<head\>
+    \<meta charset="UTF-8"\>
+    \<meta name="viewport" content="width=device-width, initial-scale=1.0"\>
+    \<title\>INDEX // REPOSITORIO DE PITCHES\</title\>
+    \<style\>
+        /\* === ESTILO BRUTALISTA / SUIZO (NEOBRUTALISM) === \*/
+        :root {
+            --bg-color: \#F4F4F0;
+            --panel-bg: \#FFFFFF;
+            --text-color: \#000000;
+            --accent-color: \#0000FF; /\* Azul Klein \*/
+            --border-color: \#000000;
+            --subdued-text: \#666666;
+            --border-thick: 2px solid var(--border-color);
+            --font-sans: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            --font-mono: 'Courier New', Courier, monospace;
+        }
+        \* {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: var(--font-sans);
+            line-height: 1.4;
+            padding: 2vw;
+            -webkit-font-smoothing: antialiased;
+        }
+        /\* HEADER / GRID PRINCIPAL \*/
+        header {
+            border: var(--border-thick);
+            background: var(--panel-bg);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 1rem;
+        }
+        .brand-title {
+            font-size: clamp(2rem, 5vw, 4.5rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -0.05em;
+            line-height: 0.9;
+        }
+        .meta-info {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            border-left: var(--border-thick);
+            padding-left: 1rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        /\* FILTROS Y BÚSQUEDA \*/
+        .controls-bar {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            border: var(--border-thick);
+            background: var(--panel-bg);
+            margin-bottom: 2rem;
+        }
+        .search-input {
+            width: 100%;
+            padding: 1rem;
+            font-family: var(--font-mono);
+            font-size: 1rem;
+            border: none;
+            outline: none;
+            background: transparent;
+        }
+        .counter {
+            padding: 1rem 1.5rem;
+            font-family: var(--font-mono);
+            font-weight: bold;
+            border-left: var(--border-thick);
+            background: var(--text-color);
+            color: var(--panel-bg);
+        }
+        /\* SECCIONES Y CATEGORÍAS \*/
+        .category-group {
+            margin-bottom: 3rem;
+        }
+        .category-header {
+            font-family: var(--font-mono);
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            background: var(--text-color);
+            color: var(--panel-bg);
+            padding: 0.5rem 1rem;
+            display: inline-block;
+            margin-bottom: -2px;
+            font-weight: bold;
+        }
+        /\* TABLA BRUTALISTA \*/
+        .pitch-table {
+            width: 100%;
+            border-collapse: collapse;
+            border: var(--border-thick);
+            background: var(--panel-bg);
+        }
+        .pitch-table th,
+        .pitch-table td {
+            border: 1px solid var(--border-color);
+            padding: 1rem;
+            text-align: left;
+            vertical-align: middle;
+        }
+        .pitch-table th {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            background: \#EAEAEA;
+            border-bottom: var(--border-thick);
+        }
+        .pitch-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+        .pitch-desc {
+            font-size: 0.9rem;
+            color: var(--subdued-text);
+            margin-top: 0.25rem;
+        }
+        .tag {
+            display: inline-block;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            padding: 0.2rem 0.5rem;
+            border: 1px solid var(--border-color);
+            text-transform: uppercase;
+            background: \#F0F0F0;
+        }
+        /\* BOTONES DE ACCIÓN \*/
+        .btn-link {
+            display: inline-block;
+            font-family: var(--font-mono);
+            font-weight: bold;
+            font-size: 0.85rem;
+            text-decoration: none;
+            color: var(--text-color);
+            background: \#FFFFFF;
+            padding: 0.6rem 1.2rem;
+            border: var(--border-thick);
+            text-transform: uppercase;
+            transition: all 0.1s ease;
+            box-shadow: 3px 3px 0px var(--border-color);
+        }
+        .btn-link:hover {
+            background: var(--accent-color);
+            color: \#FFFFFF;
+            transform: translate(-2px, -2px);
+            box-shadow: 5px 5px 0px var(--border-color);
+        }
+        .btn-link:active {
+            transform: translate(0px, 0px);
+            box-shadow: 1px 1px 0px var(--border-color);
+        }
+        /\* RESPONSIVE \*/
+        @media (max-width: 768px) {
+            header {
+                grid-template-columns: 1fr;
+            }
+            .meta-info {
+                border-left: none;
+                border-top: var(--border-thick);
+                padding-left: 0;
+                padding-top: 1rem;
+            }
+            .pitch-table, .pitch-table tbody, .pitch-table tr, .pitch-table td {
+                display: block;
+            }
+            .pitch-table thead {
+                display: none;
+            }
+            .pitch-table tr {
+                border-bottom: var(--border-thick);
+            }
+            .pitch-table td {
+                border: none;
+                padding: 0.75rem 1rem;
+            }
+        }
+    \</style\>
+\</head\>
+\<body\>
+    \<\!-- CABECERA PRINCIPAL --\>
+    \<header\>
+        \<div\>
+            \<h1 class="brand-title"\>PITCH\<br\>INDEX\</h1\>
+        \</div\>
+        \<div class="meta-info"\>
+            \<div\>
+                \<p\>\<strong\>REPOSITORIO GENERAL DE PROYECTOS\</strong\>\</p\>
+                \<p\>SISTEMA DE CONSULTA COMERCIAL\</p\>
+            \</div\>
+            \<div\>
+                \<p\>ESTADO: ACTIVO\</p\>
+                \<p\>VERSIÓN: 2024.04\</p\>
+            \</div\>
+        \</div\>
+    \</header\>
+    \<\!-- BARRA DE CONTROL --\>
+    \<div class="controls-bar"\>
+        \<input type="text" class="search-input" placeholder="\[BUSCAR PITCH POR NOMBRE O TIPO...\]" readonly\>
+        \<div class="counter"\>TOTAL: 04\</div\>
+    \</div\>
+    \<\!-- CATEGORÍA: HOSPITALIDAD & TURISMO --\>
+    \<section class="category-group"\>
+        \<div class="category-header"\>01 // HOSPITALIDAD & TURISMO\</div\>
+        \<table class="pitch-table"\>
+            \<thead\>
+                \<tr\>
+                    \<th style="width: 45%;"\>PROYECTO / DESCRIPCIÓN\</th\>
+                    \<th style="width: 25%;"\>TIPO DE ENTREGABLE\</th\>
+                    \<th style="width: 30%;"\>ACCIÓN\</th\>
+                \</tr\>
+            \</thead\>
+            \<tbody\>
+                \<tr\>
+                    \<td\>
+                        \<div class="pitch-title"\>HOTEL POSADA SAN JOSÉ\</div\>
+                        \<div class="pitch-desc"\>Propuesta comercial y presentación ejecutiva para desarrollo hotelero e identidad regional.\</div\>
+                    \</td\>
+                    \<td\>
+                        \<span class="tag"\>PITCH DE VENTA\</span\>
+                        \<span class="tag"\>WEB\</span\>
+                    \</td\>
+                    \<td\>
+                        \<a href="[https://jonpisilmx.github.io/posada-san-jose/](https://jonpisilmx.github.io/posada-san-jose/)" target="\_blank" class="btn-link"\>ABRIR PITCH ↗\</a\>
+                    \</td\>
+                \</tr\>
+                \<tr\>
+                    \<td\>
+                        \<div class="pitch-title"\>HUB DE RECURSOS DE FERNANDA RANGEL\</div\>
+                        \<div class="pitch-desc"\>Plataforma de control de proyecto y hub de recursos para Fernanda Rangel.\</div\>
+                    \</td\>
+                    \<td\>
+                        \<span class="tag"\>CONTROL DE PROYECTO\</span\>
+                        \<span class="tag"\>RECURSOS\</span\>
+                    \</td\>
+                    \<td\>
+                        \<a href="[https://jonpisilmx.github.io/ferrangel-controldeproyecto-y-recursos/](https://jonpisilmx.github.io/ferrangel-controldeproyecto-y-recursos/)" target="\_blank" class="btn-link"\>ABRIR PITCH ↗\</a\>
+                    \</td\>
+                \</tr\>
+            \</tbody\>
+        \</table\>
+    \</section\>
+    \<\!-- CATEGORÍA: CORPO & SERVICIOS --\>
+    \<section class="category-group"\>
+        \<div class="category-header"\>02 // TECNOLOGÍA & SERVICIOS\</div\>
+        \<table class="pitch-table"\>
+            \<thead\>
+                \<tr\>
+                    \<th style="width: 45%;"\>PROYECTO / DESCRIPCIÓN\</th\>
+                    \<th style="width: 25%;"\>TIPO DE ENTREGABLE\</th\>
+                    \<th style="width: 30%;"\>ACCIÓN\</th\>
+                \</tr\>
+            \</thead\>
+            \<tbody\>
+                \<tr\>
+                    \<td\>
+                        \<div class="pitch-title"\>SISTEMA INTEGRAL DE MONITOREO\</div\>
+                        \<div class="pitch-desc"\>Propuesta de arquitectura digital e infraestructura de datos.\</div\>
+                    \</td\>
+                    \<td\>
+                        \<span class="tag"\>PROPOSAL\</span\>
+                    \</td\>
+                    \<td\>
+                        \<a href="\#" class="btn-link"\>ABRIR PITCH ↗\</a\>
+                    \</td\>
+                \</tr\>
+                \<tr\>
+                    \<td\>
+                        \<div class="pitch-title"\>ESTRATEGIA MARCA CIUDAD\</div\>
+                        \<div class="pitch-desc"\>Pitch conceptual de posicionamiento de marca y campaña pública.\</div\>
+                    \</td\>
+                    \<td\>
+                        \<span class="tag"\>BRANDING\</span\>
+                    \</td\>
+                    \<td\>
+                        \<a href="\#" class="btn-link"\>ABRIR PITCH ↗\</a\>
+                    \</td\>
+                \</tr\>
+            \</tbody\>
+        \</table\>
+    \</section\>
+\</body\>
+\</html\>
+# **RESUMEN DE CAMBIOS Y ESTRUCTURA**
+|  |  |
+| :- | :- |
+| **Elemento** | **Especificación Implementada** |
+| **Nuevo Proyecto** | Hotel Posada San José |
+| **Categoría** | Hospitalidad & Turismo |
+| **URL Destino** | [https://jonpisilmx.github.io/posada-san-jose/](https://jonpisilmx.github.io/posada-san-jose/) |
+| **Estilo Visual** | Suizo / Brutalista (Tipografía Sans/Mono, bordes rígidos de 2px, sombras sólidas, paleta monocromática con acento Azul Klein) |
