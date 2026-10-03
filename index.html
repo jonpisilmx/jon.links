@@ -149,17 +149,24 @@
             <a href="https://jonpisilmx.github.io/propuestacaveli" target="_blank" class="block w-full bg-brand-orange text-black font-bold text-center py-2 text-xs uppercase border border-black hover:bg-black hover:text-white transition-colors">ABRIR PITCH ↗</a>
           </article>
 
-          <!-- 04 -->
+          <!-- 04: HOTEL POSADA SAN JOSÉ (TARJETA DUAL) -->
           <article class="brutalist-card bg-white p-4 flex flex-col justify-between" data-category="hospitalidad" data-title="hotel posada san jose analisis digital revenue">
             <div>
               <div class="flex justify-between items-start mb-2">
                 <span class="badge-number">04</span>
                 <span class="text-[10px] font-mono-custom font-bold uppercase tracking-widest bg-gray-200 px-2 py-0.5 border border-black">Hospitalidad</span>
               </div>
-              <h3 class="text-base font-extrabold leading-tight uppercase mb-1">Hotel Posada San José — Revenue Strategy</h3>
-              <p class="text-xs text-gray-700 mb-4 font-mono-custom">Análisis digital del negocio con plan de acciones estratégicas enfocadas a incrementar el revenue general.</p>
+              <h3 class="text-base font-extrabold leading-tight uppercase mb-1">Hotel Posada San José</h3>
+              <p class="text-xs text-gray-700 mb-3 font-mono-custom">Análisis digital del negocio con plan de acciones estratégicas y propuesta de identidad web.</p>
             </div>
-            <a href="https://jonpisilmx.github.io/posada-san-jose/" target="_blank" class="block w-full bg-brand-orange text-black font-bold text-center py-2 text-xs uppercase border border-black hover:bg-black hover:text-white transition-colors">ABRIR PITCH ↗</a>
+            <div class="flex flex-col gap-2 mt-2">
+              <a href="https://jonpisilmx.github.io/posada-san-jose/" target="_blank" class="block w-full bg-brand-orange text-black font-bold text-center py-2 text-xs uppercase border border-black hover:bg-black hover:text-white transition-colors">
+                REVENUE STRATEGY ↗
+              </a>
+              <a href="https://jonpisilmx.github.io/hotel-posada-san-jose/" target="_blank" class="block w-full bg-gray-100 text-black font-bold text-center py-1.5 text-[10px] uppercase border border-black hover:bg-black hover:text-white transition-colors font-mono-custom">
+                LANDING DE MARCA ↗
+              </a>
+            </div>
           </article>
 
           <!-- 05 -->
@@ -262,7 +269,7 @@
         </div>
       </main>
 
-      <!-- SIDEBAR AUDIO ENGINE -->
+      <!-- SIDEBAR AUDIO ENGINE & FEED -->
       <aside class="lg:col-span-5 xl:col-span-4 bg-[#E2DFD8] p-4 flex flex-col gap-5">
 
         <!-- MÓDULO SINTETIZADOR DE AUDIO GARANTIZADO -->
@@ -333,7 +340,7 @@
 
     </div>
 
-    <!-- FOOTER SUIZO LIMPIO Y DEPURADO -->
+    <!-- FOOTER SUIZO DEPURADO -->
     <footer class="p-6 border-t-2 border-brand-black bg-[#EAE8E3] text-xs font-mono-custom flex flex-col md:flex-row justify-between items-center gap-4 text-gray-700">
       <div>
         <p class="font-bold text-black uppercase">REPOS.LINX — DESIGN & DEVELOPMENT</p>
@@ -361,9 +368,7 @@
   </div>
 
   <script>
-    // ----------------------------------------------------
     // MOTOR DE SÍNTESIS DE AUDIO REAL (WEB AUDIO API)
-    // ----------------------------------------------------
     let ctx = null;
     let binauralOsc1 = null;
     let binauralOsc2 = null;
@@ -408,8 +413,8 @@
         binauralOsc1.type = 'sine';
         binauralOsc2.type = 'sine';
 
-        binauralOsc1.frequency.value = 216; // 432Hz Harmonic
-        binauralOsc2.frequency.value = 226; // +10Hz Alpha Shift
+        binauralOsc1.frequency.value = 216;
+        binauralOsc2.frequency.value = 226;
 
         binauralOsc1.connect(gainNode);
         binauralOsc2.connect(gainNode);
@@ -503,9 +508,7 @@
       activeBtn.querySelector('.indicator').innerText = 'ON ●';
     }
 
-    // ----------------------------------------------------
     // FEED NOTICIAS
-    // ----------------------------------------------------
     const newsCatalog = [
       {
         title: "Apple amplía la integración de IA generativa en la suite de edición móvil",
